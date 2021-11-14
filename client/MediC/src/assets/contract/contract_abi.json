@@ -1,0 +1,1050 @@
+ [
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "token_threshold",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "token_amount",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "constructor"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "tokenOwner",
+					"type": "address"
+				},
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "spender",
+					"type": "address"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "tokens",
+					"type": "uint256"
+				}
+			],
+			"name": "Approval",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"name": "ContractBalanceLow",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				},
+				{
+					"indexed": false,
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"name": "EscrowBalanceLow",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "from",
+					"type": "address"
+				},
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "to",
+					"type": "address"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "tokens",
+					"type": "uint256"
+				}
+			],
+			"name": "Transfer",
+			"type": "event"
+		},
+		{
+			"inputs": [],
+			"name": "_totalSupply",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "_doctor",
+					"type": "address"
+				}
+			],
+			"name": "addDoctor",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_amount",
+					"type": "uint256"
+				}
+			],
+			"name": "addEscrowBalance",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "_doctor",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_timestamp",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_agreement_details",
+					"type": "uint256"
+				}
+			],
+			"name": "addHospitalDoctorAgreement",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "_patient",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_meta_id",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_timestamp",
+					"type": "uint256"
+				}
+			],
+			"name": "addHospitlizationRec",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_user_type",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "participant",
+					"type": "address"
+				}
+			],
+			"name": "addNetworkParticipants",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "addPatients",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256[]",
+					"name": "_coverage",
+					"type": "uint256[]"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_max_value",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_cost",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_meta_id",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_policy_id",
+					"type": "uint256"
+				}
+			],
+			"name": "addPolicy",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_hospitalization_id",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "_doctor",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_timestamp",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_procedure_details_id",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_procedure_id",
+					"type": "uint256"
+				}
+			],
+			"name": "addProcedure",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_procedure_id",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_cost",
+					"type": "uint256"
+				}
+			],
+			"name": "addProcedureCost",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_procedure_id",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_procedure_type",
+					"type": "uint256"
+				}
+			],
+			"name": "addProcedureType",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "tokenOwner",
+					"type": "address"
+				},
+				{
+					"internalType": "address",
+					"name": "spender",
+					"type": "address"
+				}
+			],
+			"name": "allowance",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "remaining",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "spender",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "tokens",
+					"type": "uint256"
+				}
+			],
+			"name": "approve",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "success",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "sender",
+					"type": "address"
+				},
+				{
+					"internalType": "address",
+					"name": "spender",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "tokens",
+					"type": "uint256"
+				}
+			],
+			"name": "approve",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "success",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "tokenOwner",
+					"type": "address"
+				}
+			],
+			"name": "balanceOf",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "balance",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "decimals",
+			"outputs": [
+				{
+					"internalType": "uint8",
+					"name": "",
+					"type": "uint8"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_policy_id",
+					"type": "uint256"
+				}
+			],
+			"name": "enrollPolicy",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getContactBalance",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getDocArrayLength",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "_hospital",
+					"type": "address"
+				}
+			],
+			"name": "getDoctorAgreement",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "_address",
+					"type": "address"
+				}
+			],
+			"name": "getEscrowBalance",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "_doctor",
+					"type": "address"
+				}
+			],
+			"name": "getHospitalAgreement",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_amount",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "_hospital",
+					"type": "address"
+				},
+				{
+					"internalType": "address",
+					"name": "_insurer",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_policy_id",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "_patient",
+					"type": "address"
+				}
+			],
+			"name": "getInsuranceClaim",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_hospitalization_meta_id",
+					"type": "uint256"
+				}
+			],
+			"name": "getPatientHospitalizationDetails",
+			"outputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				},
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "_patient",
+					"type": "address"
+				}
+			],
+			"name": "getPatientHospitalizationRecords",
+			"outputs": [
+				{
+					"internalType": "uint256[]",
+					"name": "",
+					"type": "uint256[]"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "_patient",
+					"type": "address"
+				}
+			],
+			"name": "getPatientPolicy",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_hospitalization_id",
+					"type": "uint256"
+				}
+			],
+			"name": "getProcedure",
+			"outputs": [
+				{
+					"internalType": "uint256[]",
+					"name": "",
+					"type": "uint256[]"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_procedure_id",
+					"type": "uint256"
+				}
+			],
+			"name": "getProcedureCost",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_procedure_details_id",
+					"type": "uint256"
+				}
+			],
+			"name": "getProcedureDetails",
+			"outputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_procedure_id",
+					"type": "uint256"
+				}
+			],
+			"name": "getProcedureType",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getUserType",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "user",
+					"type": "address"
+				}
+			],
+			"name": "getUserType",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "name",
+			"outputs": [
+				{
+					"internalType": "string",
+					"name": "",
+					"type": "string"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_amount",
+					"type": "uint256"
+				}
+			],
+			"name": "replenishContractBalance",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_amount",
+					"type": "uint256"
+				}
+			],
+			"name": "replenishEscrowBalance",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_amount",
+					"type": "uint256"
+				}
+			],
+			"name": "requestTokens",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "a",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "b",
+					"type": "uint256"
+				}
+			],
+			"name": "safeAdd",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "c",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "pure",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "a",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "b",
+					"type": "uint256"
+				}
+			],
+			"name": "safeDiv",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "c",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "pure",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "a",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "b",
+					"type": "uint256"
+				}
+			],
+			"name": "safeMul",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "c",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "pure",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "a",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "b",
+					"type": "uint256"
+				}
+			],
+			"name": "safeSub",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "c",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "pure",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "_doctor",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_amount",
+					"type": "uint256"
+				}
+			],
+			"name": "settleDoctorPayment",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_hospitalization_id",
+					"type": "uint256"
+				}
+			],
+			"name": "settleHospitalizationBill",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "symbol",
+			"outputs": [
+				{
+					"internalType": "string",
+					"name": "",
+					"type": "string"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "totalSupply",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "to",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "tokens",
+					"type": "uint256"
+				}
+			],
+			"name": "transfer",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "success",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "from",
+					"type": "address"
+				},
+				{
+					"internalType": "address",
+					"name": "to",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "tokens",
+					"type": "uint256"
+				}
+			],
+			"name": "transferFrom",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "success",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_policy_id",
+					"type": "uint256"
+				}
+			],
+			"name": "viewPolicy",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256[]",
+					"name": "",
+					"type": "uint256[]"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		}
+	]

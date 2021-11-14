@@ -1,0 +1,13 @@
+<div class="init-page">
+    <div class="container initscope">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>MediC: The Medical Payments Ecosystem</h1>
+            </div>
+        </div>
+        <button mat-raised-button [disabled]="isMetamaskAvailable== false" (click)="connectMetamask()">
+            <mat-icon svgIcon="metamask_icon"></mat-icon>
+            <h2>Connect With Metamask</h2>
+        </button>
+    </div>
+</div>

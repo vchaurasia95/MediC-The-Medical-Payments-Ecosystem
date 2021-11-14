@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+@import "styles/variables"; 
+@import "~@angular/material/prebuilt-themes/indigo-pink.css"; 
+@import "~bootstrap/scss/_functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+/* Import Bootstrap Reboot */
+ @import "~bootstrap/scss/root";
+ @import "~bootstrap/scss/reboot";
+
+@import "~bootstrap/scss/containers";
+ /* // Add .container and .container-fluid classes */
+@import "~bootstrap/scss/grid";
+/* // Add the grid system */
+@import "styles/reset"; 
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
