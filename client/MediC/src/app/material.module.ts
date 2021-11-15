@@ -46,7 +46,6 @@ import { MatTreeModule } from '@angular/material/tree';
 import { OverlayModule } from '@angular/cdk/overlay';
 
 
-
 @NgModule({
   declarations: [],
   imports: [
@@ -77,7 +76,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
     MatDatepickerModule,
     MatDialogModule,
     MatDividerModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatToolbarModule
   ]
 })
 export class MaterialModule { }
