@@ -3,12 +3,60 @@
     align-items: center;
     justify-content: center;
     width: 400px;
-    background: #C9DDFF;
-    padding: 10px;
+    background-color: #C9DDFF;
+    padding-top: 15px;
   }
 
   .example-sidenav-content{
-      background: #F0BCC7;
+    //   background: #F0BCC7;
       width: 100%;
-      height:100%
+      height:100%;
+      padding-top: 15px;
+      text-align: center;
+      
   }
+  .header{
+      position: relative;
+      top: 0px;
+      height: 50px;
+      box-shadow: 0 3px 5px -1px #0003, 0 6px 10px #00000024, 0 1px 18px #0000001f;
+      align-items: center;
+      padding-right: 10px;
+      z-index: 2;
+}
+// .example-container{
+//     z-index: -1;
+// }
+
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  ::ng-deep .mat-form-field-underline {
+    display: none;
+  }
+  ::ng-deep .mat-select {
+    width: 100px !important;
+}
+mat-icon{
+    vertical-align: sub;
+    transform: scale(1.5);
+    color: sandybrown;
+    margin: 5%;
+}
+.auto-width {
+    padding: inherit;
+    margin: 2%;
+}
+.balance{
+    padding: inherit;
+    margin: 2%;
+}
+.bal{
+    margin: 7%;
+    vertical-align: middle;
+}
+h1{
+    font-weight: bolder;
+    font-family: cursive;
+    font-size: x-large;
+}

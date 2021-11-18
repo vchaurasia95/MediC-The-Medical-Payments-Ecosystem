@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Web3Service } from '../services/web3.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,10 +7,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
-  constructor() { }
+  selected: any;
+  options: any;
+  balance=0;
+  escrowBalance =0;
+  typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
+  constructor(private web3Service: Web3Service) {
+    this.web3Service.setTokenBalance().then(()=>console.log('done'));
+    this.web3Service.tokentSubject.subscribe((val:any)=>{
+      this.balance = parseInt(val)/(Math.pow(10,15))
+    });
+    this.web3Service.escrowSubject.subscribe((val:any)=>{
+      this.escrowBalance = parseInt(val)/(Math.pow(10,15))
+    });
+   }
 
   ngOnInit(): void {
+    this.web3Service.getAddress().then((addresses) => this.options = addresses);
+    this.selected =  this.web3Service.getdefaultAccount();
+    
   }
 
 }

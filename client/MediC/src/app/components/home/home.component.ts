@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   async connectMetamask() {
     const connected = await this.web3service.connectMetamask();
     if (connected) {
-      // this.router.navigate(['/dashboard']);
+      this.router.navigate(['/dashboard']);
     }
   }
 
