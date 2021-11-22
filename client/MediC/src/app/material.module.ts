@@ -24,7 +24,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
-import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -37,7 +36,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -45,6 +43,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { OverlayModule } from '@angular/cdk/overlay';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [],
@@ -52,6 +53,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
 
   ],
   exports: [
+    FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     MatButtonModule,
     MatIconModule,
@@ -64,6 +67,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     ScrollingModule,
     CdkStepperModule,
     CdkTableModule,
+    MatSnackBarModule,
     CdkTreeModule,
     MatAutocompleteModule,
     MatBadgeModule,
@@ -88,7 +92,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
     MatInputModule,
     OverlayModule,
     MatTreeModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatFormFieldModule
   ]
 })
 export class MaterialModule { }

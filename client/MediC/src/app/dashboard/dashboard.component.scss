@@ -1,20 +1,16 @@
 .example-sidenav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 400px;
     background-color: #C9DDFF;
     padding-top: 15px;
   }
 
   .example-sidenav-content{
-    //   background: #F0BCC7;
-      width: 100%;
-      height:100%;
-      padding-top: 15px;
-      text-align: center;
-      
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
   }
+
   .header{
       position: relative;
       top: 0px;
@@ -24,10 +20,15 @@
       padding-right: 10px;
       z-index: 2;
 }
-// .example-container{
-//     z-index: -1;
-// }
-
+.example-container{
+    height: 100%;
+}
+.box {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+  }
+  
 .example-spacer {
     flex: 1 1 auto;
   }

@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { MaterialModule } from '../material.module';
 import { TransferTokenComponent } from './components/transfer-token/transfer-token.component';
+import { SharedModule } from '../shared.module';
 
 
 
@@ -15,7 +16,8 @@ import { TransferTokenComponent } from './components/transfer-token/transfer-tok
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    MaterialModule,
-  ]
+    MaterialModule
+    // SharedModule
+  ],
 })
 export class DashboardModule { }

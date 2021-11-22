@@ -15,5 +15,27 @@
 /* // Add the grid system */
 @import "styles/reset"; 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
+.success-dialog {
+    color: rgb(24, 24, 70) !important;
+    background-color: rgb(113, 197, 113) !important;
+    .mat-simple-snackbar-action {
+        color: white !important;
+    }
+}
 
+.warning-dialog {
+    color: rgb(32, 25, 66) !important;
+    background-color: rgb(228, 226, 106) !important;
+    .mat-simple-snackbar-action {
+        color: white !important;
+    }
+}
+
+.error-dialog {
+    color: rgb(64, 61, 80) !important;
+    background-color: rgb(218, 75, 50) !important;
+    .mat-simple-snackbar-action {
+        color: white !important;
+    }
+}

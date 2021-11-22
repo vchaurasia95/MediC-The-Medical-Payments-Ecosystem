@@ -4,10 +4,10 @@ import Web3 from 'web3';
 import { ADDRESSES } from '../../assets/contract/address';
 import { HttpClient } from "@angular/common/http";
 import { Observable, Subject, throwError } from 'rxjs';
+import { transferArrayItem } from '@angular/cdk/drag-drop';
+import { SnackbarService } from './snackbar.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class Web3Service {
   private web3: any;
   private contract: any;
@@ -21,9 +21,9 @@ export class Web3Service {
 
   tokentSubject = new Subject();
   escrowSubject = new Subject();
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private snackBarService: SnackbarService) {
     this.httpClient.get("assets/contract/contract_abi.json").subscribe((data) => {
-      this.contract_abi = data;      
+      this.contract_abi = data;
     })
 
   }
@@ -52,7 +52,10 @@ export class Web3Service {
         await this.contractConnect();
         await this.setDefaultAccount(this.account_addresses[0]);
         await this.setTokenBalance()
-
+        const conf = {
+          userType: await this.getUserType(this.account_addresses[0])
+        };
+        localStorage.setItem("conf", JSON.stringify(conf));
         // =======================================================================
         // TODO: Remove below functions once testing is complete: Added by Digant
         await this.getTotalSupply()
@@ -277,4 +280,22 @@ export class Web3Service {
   public getdefaultAccount() {
     return this.web3.eth.defaultAccount;
   }
+
+  public isValidAddress(address: String) {
+    return this.web3 && this.web3.utils.isAddress(address);
+  }
+
+  public transferToken(address: String, amount: number) {
+    amount = amount * Math.pow(10, 18);
+    return this.contract.methods.transfer(address, amount + '').send({ from: this.account_addresses[0] })
+      .on('transactionHash', (hash: any) => {
+        console.log(`Transcation #--> ${hash}`);
+        this.snackBarService.openWarnSnackBar('Transaction Sent Successfully!\nTx #: ' + hash);
+      })
+      .on('error', (error: any, receipt: any) => {
+        console.log(`Transcation Error-->`, error);
+        this.snackBarService.openErrorSnackBar('Transaction error,Check Console!!');
+      });
+  }
 }
+

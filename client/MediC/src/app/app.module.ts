@@ -4,10 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
-import { Web3Service } from './services/web3.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './components/home/home.component';
+import { SharedModule } from './shared.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,9 +19,10 @@ import { HomeComponent } from './components/home/home.component';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule.forRoot(),
   ],
-  providers: [Web3Service],
+  // providers: [Web3Service],
   // exports:[
   //   MaterialModule
   // ],
@@ -28,4 +30,4 @@ import { HomeComponent } from './components/home/home.component';
 })
 export class AppModule {
 
- }
+}

@@ -1,62 +1,64 @@
-<mat-toolbar class="header" color="primary">
-    <mat-toolbar-row>
-        <span>
-            <h1>MediC</h1>
-        </span>
-        <span class="example-spacer"></span>
-        <div matTooltip="Connected Address" class="auto-width">
-            <mat-icon>account_balance_wallet</mat-icon>
-            <span class="bal">{{selected | slice:0:7}}</span>
-        </div>
-        <div matTooltip="MediC Balance" class="balance">
-            <mat-icon>medical_services</mat-icon>
-            <span class="bal">{{balance}}</span>
-        </div>
+<div class="box">
+    <mat-toolbar class="header" color="primary">
+        <mat-toolbar-row>
+            <span>
+                <h1>MediC</h1>
+            </span>
+            <span class="example-spacer"></span>
+            <div matTooltip="Connected Address" class="auto-width">
+                <mat-icon>account_balance_wallet</mat-icon>
+                <span class="bal">{{selected | slice:0:7}}</span>
+            </div>
+            <div matTooltip="MediC Balance" class="balance">
+                <mat-icon>medical_services</mat-icon>
+                <span class="bal">{{balance}}</span>
+            </div>
 
-        <div matTooltip="Escrow Balance" class="balance">
-            <mat-icon><span class="material-icons">
-                    account_balance
-                </span></mat-icon>
-            <span class="bal">{{escrowBalance}}</span>
-        </div>
+            <div *ngIf="userType>0" matTooltip="Escrow Balance" class="balance">
+                <mat-icon><span class="material-icons">
+                        account_balance
+                    </span></mat-icon>
+                <span class="bal">{{escrowBalance}}</span>
+            </div>
 
-        <div>
-            <button mat-icon-button [matMenuTriggerFor]="menu">
-                <mat-icon>account_circle</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu">
-                <button mat-menu-item>
-                    <mat-icon>logout</mat-icon>
-                    <span>Logout</span>
+            <div>
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>account_circle</mat-icon>
                 </button>
-            </mat-menu>
-        </div>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
+                        <mat-icon>logout</mat-icon>
+                        <span>Logout</span>
+                    </button>
+                </mat-menu>
+            </div>
 
-    </mat-toolbar-row>
-</mat-toolbar>
-<mat-sidenav-container class="example-container">
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-sidenav-container class="example-container" autosize>
 
-    <mat-sidenav #sidenav mode="side" opened class="example-sidenav" fixedInViewport="true" fixedTopGap="64" >
-        <mat-nav-list>
-            <a mat-list-item href="..." > Add New Hospital </a>
-            <a mat-list-item href="..." > Add New Insurer </a>
-            <a mat-list-item [routerLink]="['transfer-token']" > Transfer MediC </a>
-            <a mat-list-item href="..." > Enroll Insurance </a>
-            <a mat-list-item href="..." > Pay Bill </a>
-            <a mat-list-item href="..." > View Hospitals </a>
-            <a mat-list-item href="..." > Add Procedures </a>
-            <a mat-list-item href="..." > View Agreement </a>
-            <a mat-list-item href="..." > Add Doctor </a>
-            <a mat-list-item href="..." > Admit Patient </a>
-            <a mat-list-item href="..." > Check Insurance </a>
-            <a mat-list-item href="..." > Generate Bill </a>
-            <a mat-list-item href="..." > Add Escrow Balance </a>
-        </mat-nav-list>
-    </mat-sidenav>
+        <mat-sidenav #sidenav mode="side" opened class="example-sidenav" fixedInViewport="true" fixedTopGap="64">
+            <mat-nav-list>
+                <a mat-list-item href="..."> Add New Hospital </a>
+                <a mat-list-item href="..."> Add New Insurer </a>
+                <a mat-list-item [routerLink]="['transfer-token']"> Transfer MediC </a>
+                <a mat-list-item href="..."> Enroll Insurance </a>
+                <a mat-list-item href="..."> Pay Bill </a>
+                <a mat-list-item href="..."> View Hospitals </a>
+                <a mat-list-item href="..."> Add Procedures </a>
+                <a mat-list-item href="..."> View Agreement </a>
+                <a mat-list-item href="..."> Add Doctor </a>
+                <a mat-list-item href="..."> Admit Patient </a>
+                <a mat-list-item href="..."> Check Insurance </a>
+                <a mat-list-item href="..."> Generate Bill </a>
+                <a mat-list-item href="..."> Add Escrow Balance </a>
+            </mat-nav-list>
+        </mat-sidenav>
 
-    <mat-sidenav-content class="example-sidenav-content">
-        <router-outlet></router-outlet>
+        <mat-sidenav-content class="example-sidenav-content">
+            <router-outlet></router-outlet>
 
-    </mat-sidenav-content>
+        </mat-sidenav-content>
 
-</mat-sidenav-container>
+    </mat-sidenav-container>
+</div>
