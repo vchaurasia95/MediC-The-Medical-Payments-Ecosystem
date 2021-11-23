@@ -14,7 +14,7 @@
                 <span class="bal">{{balance}}</span>
             </div>
 
-            <div *ngIf="userType>0" matTooltip="Escrow Balance" class="balance">
+            <div *ngIf="userType == 2 || userType == 3" matTooltip="Escrow Balance" class="balance">
                 <mat-icon><span class="material-icons">
                         account_balance
                     </span></mat-icon>
@@ -26,7 +26,7 @@
                     <mat-icon>account_circle</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item>
+                    <button (click)="logout()" mat-menu-item>
                         <mat-icon>logout</mat-icon>
                         <span>Logout</span>
                     </button>
@@ -39,8 +39,7 @@
 
         <mat-sidenav #sidenav mode="side" opened class="example-sidenav" fixedInViewport="true" fixedTopGap="64">
             <mat-nav-list>
-                <a mat-list-item href="..."> Add New Hospital </a>
-                <a mat-list-item href="..."> Add New Insurer </a>
+                <a mat-list-item [routerLink]="['add-participant']"> Add Network Participant </a>
                 <a mat-list-item [routerLink]="['transfer-token']"> Transfer MediC </a>
                 <a mat-list-item href="..."> Enroll Insurance </a>
                 <a mat-list-item href="..."> Pay Bill </a>

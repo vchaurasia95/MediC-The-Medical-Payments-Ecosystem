@@ -5,13 +5,15 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { MaterialModule } from '../material.module';
 import { TransferTokenComponent } from './components/transfer-token/transfer-token.component';
 import { SharedModule } from '../shared.module';
+import { AddNetworkParticipantComponent } from './components/add-network-participant/add-network-participant.component';
 
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    TransferTokenComponent
+    TransferTokenComponent,
+    AddNetworkParticipantComponent
   ],
   imports: [
     CommonModule,

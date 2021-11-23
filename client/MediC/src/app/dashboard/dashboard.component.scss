@@ -61,3 +61,7 @@ h1{
     font-family: cursive;
     font-size: x-large;
 }
+::ng-deep .mat-menu-panel {
+  padding: 0 10px!important;
+  width: 150px !important;
+}

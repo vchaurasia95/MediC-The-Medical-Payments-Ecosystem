@@ -1,0 +1,25 @@
+.form-container{
+    height: 100%;
+    justify-content: center;
+}
+
+.address-row{
+    width: 800px;
+    padding: 10px !important;
+}
+address-col{
+    width: 380px;
+}
+.amount{
+    width: 400px;
+}
+mat-form-field{
+    padding: 0;
+    
+}
+mat-select{
+    width: 380px !important;
+}
+.send-icon{
+    padding-left: 10px;
+}

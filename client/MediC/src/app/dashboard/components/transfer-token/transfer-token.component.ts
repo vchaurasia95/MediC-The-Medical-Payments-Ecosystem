@@ -20,7 +20,6 @@ export class TransferTokenComponent implements OnInit {
   amount: any
   transferForm: any;
   constructor(private web3Service: Web3Service, private fb: FormBuilder, private snackBarService: SnackbarService) {
-    console.log(this.web3Service.getAddress().then((data) => console.log(data)))
   }
 
   ngOnInit(): void {

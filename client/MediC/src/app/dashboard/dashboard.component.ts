@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Web3Service } from '../services/web3.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class DashboardComponent implements OnInit {
   escrowBalance = 0;
   userType: number = 0;
   typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
-  constructor(private web3Service: Web3Service) {
+  constructor(private web3Service: Web3Service, public router: Router) {
     this.web3Service.setTokenBalance().then(() => console.log('done'));
     this.web3Service.tokentSubject.subscribe((val: any) => {
       this.balance = parseInt(val) / (Math.pow(10, 15))
@@ -29,7 +30,12 @@ export class DashboardComponent implements OnInit {
       this.userType = conf.userType;
     this.web3Service.getAddress().then((addresses) => this.options = addresses);
     this.selected = this.web3Service.getdefaultAccount();
-
   }
+
+  logout(){
+    localStorage.clear();
+    this.router.navigate(['']);
+  }
+  
 
 }
