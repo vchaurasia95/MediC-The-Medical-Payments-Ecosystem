@@ -3,7 +3,7 @@ import detectEthereumProvider from '@metamask/detect-provider'
 import Web3 from 'web3';
 import { ADDRESSES } from '../../assets/contract/address';
 import { HttpClient } from "@angular/common/http";
-import { Observable, Subject, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, throwError } from 'rxjs';
 import { transferArrayItem } from '@angular/cdk/drag-drop';
 import { SnackbarService } from './snackbar.service';
 
@@ -19,8 +19,8 @@ export class Web3Service {
   private no_of_doctors: any;
   private connected_user_type: any;
 
-  tokentSubject = new Subject();
-  escrowSubject = new Subject();
+  tokentSubject = new BehaviorSubject<number>(0);
+  escrowSubject = new BehaviorSubject<number>(0);
   constructor(private httpClient: HttpClient, private snackBarService: SnackbarService) {
     this.httpClient.get("assets/contract/contract_abi.json").subscribe((data) => {
       this.contract_abi = data;
@@ -286,8 +286,44 @@ export class Web3Service {
   }
 
   public transferToken(address: String, amount: number) {
-    amount = amount * Math.pow(10, 18);
-    return this.contract.methods.transfer(address, amount + '').send({ from: this.account_addresses[0] })
+    const amt = BigInt(amount*Math.pow(10,18)).toString();
+    return this.contract.methods.transfer(address, amt).send({ from: this.account_addresses[0] })
+      .on('transactionHash', (hash: any) => {
+        console.log(`Transcation #--> ${hash}`);
+        this.snackBarService.openWarnSnackBar('Transaction Sent Successfully!\nTx #: ' + hash);
+      })
+      .on('error', (error: any, receipt: any) => {
+        console.log(`Transcation Error-->`, error);
+        this.snackBarService.openErrorSnackBar('Transaction error,Check Console!!');
+      });
+  }
+
+  public addNetworkParticipants(address: string, userType: string) {
+    return this.contract.methods.addNetworkParticipants(userType, address).send({ from: this.account_addresses[0] })
+      .on('transactionHash', (hash: any) => {
+        console.log(`Transcation #--> ${hash}`);
+        this.snackBarService.openWarnSnackBar('Transaction Sent Successfully!\nTx #: ' + hash);
+      })
+      .on('error', (error: any, receipt: any) => {
+        console.log(`Transcation Error-->`, error);
+        this.snackBarService.openErrorSnackBar('Transaction error,Check Console!!');
+      });
+  }
+  public addProcedureTypes(procedureId:string, procedureType:string){
+    return this.contract.methods.addProcedureType(procedureId , procedureType).send({ from: this.account_addresses[0] })
+      .on('transactionHash', (hash: any) => {
+        console.log(`Transcation #--> ${hash}`);
+        this.snackBarService.openWarnSnackBar('Transaction Sent Successfully!\nTx #: ' + hash);
+      })
+      .on('error', (error: any, receipt: any) => {
+        console.log(`Transcation Error-->`, error);
+        this.snackBarService.openErrorSnackBar('Transaction error,Check Console!!');
+      });
+  }
+
+  public addEscrowBal(amount:string){
+    const amt = BigInt(parseInt(amount)*Math.pow(10,18)).toString();
+    return this.contract.methods.addEscrowBalance(amt).send({ from: this.account_addresses[0] })
       .on('transactionHash', (hash: any) => {
         console.log(`Transcation #--> ${hash}`);
         this.snackBarService.openWarnSnackBar('Transaction Sent Successfully!\nTx #: ' + hash);

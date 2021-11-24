@@ -1,0 +1,16 @@
+<form [formGroup]="transferForm">
+    <div class="form-container">
+        <div class="row amount">
+            <mat-form-field appearance="fill">
+                <mat-label>Amount</mat-label>
+                <input type="number" matInput formControlName="amount" required>
+            </mat-form-field>
+        </div>
+    </div>
+</form>
+<div class="row submitbuttom">
+    <button [disabled]="(!transferForm.valid)" (click)="transferToken()" mat-raised-button color="primary">
+        <span>Send</span>
+        <mat-icon class="send-icon">send</mat-icon>
+    </button>
+</div>

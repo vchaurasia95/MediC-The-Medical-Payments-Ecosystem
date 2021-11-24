@@ -74,5 +74,21 @@ export class OffChainService {
     return this.httpClient.get(`${BASE_URL_BACKEND}hospitalization-record/all`);
   }
 
+  // TODO:ADD Procedure
+  public async addProcedure(name:string, description:string){
+
+  }
+
+
+// TODO: Get Procedure By ID
+public getProcedures(id:number){
+
+}
+
+
+// TODO: Get all Procedures
+public getAllProcedures(){
+  
+}
   
 }

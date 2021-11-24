@@ -17,11 +17,12 @@ export class DashboardComponent implements OnInit {
   constructor(private web3Service: Web3Service, public router: Router) {
     this.web3Service.setTokenBalance().then(() => console.log('done'));
     this.web3Service.tokentSubject.subscribe((val: any) => {
-      this.balance = parseInt(val) / (Math.pow(10, 15))
+      this.balance = Math.round(parseInt(val) / (Math.pow(10, 18)));
     });
     this.web3Service.escrowSubject.subscribe((val: any) => {
-      this.escrowBalance = parseInt(val) / (Math.pow(10, 15))
+      this.escrowBalance = Math.round(parseInt(val) / (Math.pow(10, 18)))
     });
+    this.balance = this.web3Service.escrowSubject.getValue();
   }
 
   ngOnInit(): void {

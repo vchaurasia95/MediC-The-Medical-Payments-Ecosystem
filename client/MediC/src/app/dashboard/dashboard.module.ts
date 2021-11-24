@@ -6,6 +6,8 @@ import { MaterialModule } from '../material.module';
 import { TransferTokenComponent } from './components/transfer-token/transfer-token.component';
 import { SharedModule } from '../shared.module';
 import { AddNetworkParticipantComponent } from './components/add-network-participant/add-network-participant.component';
+import { AddProcedureComponent } from './components/add-procedure/add-procedure.component';
+import { AddEscrowBalComponent } from './components/add-escrow-bal/add-escrow-bal.component';
 
 
 
@@ -13,7 +15,9 @@ import { AddNetworkParticipantComponent } from './components/add-network-partici
   declarations: [
     DashboardComponent,
     TransferTokenComponent,
-    AddNetworkParticipantComponent
+    AddNetworkParticipantComponent,
+    AddProcedureComponent,
+    AddEscrowBalComponent
   ],
   imports: [
     CommonModule,
