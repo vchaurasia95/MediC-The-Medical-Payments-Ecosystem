@@ -26,16 +26,19 @@ export class AddProcedureComponent implements OnInit {
   async addParticipant() {
     const value = this.transferForm.value;
     console.log('here', value);
-    this.offChainService.addProcedure(value.name, value.description).
-      then((procedure) => {
-        let proc = {
-          "id": 1234
-        }
-        this.web3Service.addProcedureTypes(proc.id+"", value.procedureType)
+
+    this.offChainService.addProcedure({
+      name: value.name, 
+      description: value.description
+    }).
+      then((procedure:any) => {
+        // let proc = {
+        //   "_id": 1234
+        // }
+        this.web3Service.addProcedureTypes(procedure._id+"", value.procedureType)
           .then(async (reciept: any) => {
             console.log(`Transcation Reciept-->`, reciept);
             this.snackBarService.openSuccessSnackBar("Participent Successfully Added\nTx #: " + reciept.transactionHash);
-            //TODO : Call Service to add user details
           })
           .catch((error: any) => {
             console.log(`Transcation Error-->`, error);

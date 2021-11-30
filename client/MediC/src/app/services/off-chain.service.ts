@@ -1,7 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 const BASE_URL_BACKEND = `http://localhost:4041/api/`
+var options = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json'
+  }),
+  observe: 'response'
+};
 
 @Injectable({
   providedIn: 'root'
@@ -12,22 +18,23 @@ export class OffChainService {
 
   // ! POST METHODS
 
-  public createUser(details:Object){
-    return this.httpClient.post(`${BASE_URL_BACKEND}user/register`, {
+  public async createUser(details:Object){
+    return await this.httpClient.post<any>(`${BASE_URL_BACKEND}user/register`, {
       details:details
     })
   }
 
-  public addAgreement(details:Object){
-    return this.httpClient.post(`${BASE_URL_BACKEND}agreement/`, {
+  public async addAgreement(details:Object){
+    return await this.httpClient.post(`${BASE_URL_BACKEND}agreement`, {
         details:details
     })
   }
 
   public addPolicy(details:Object){
-    return this.httpClient.post(`${BASE_URL_BACKEND}policy/`, {
-        details:details
-    })
+    return this.httpClient.post(`${BASE_URL_BACKEND}policy`, {
+        details:details,
+    },
+    {responseType: "json"})
   }
 
   public addHospitalizationRecord(details:Object){
@@ -36,6 +43,11 @@ export class OffChainService {
     })
   }
 
+  public async addProcedure(details: Object){
+    return this.httpClient.post(`${BASE_URL_BACKEND}procedure`, {
+      details:details
+    })
+  }
   // ! GET METHODS 
 
   // USER
@@ -74,21 +86,12 @@ export class OffChainService {
     return this.httpClient.get(`${BASE_URL_BACKEND}hospitalization-record/all`);
   }
 
-  // TODO:ADD Procedure
-  public async addProcedure(name:string, description:string){
-
+  public getProcedures(id:number){
+    return this.httpClient.get(`${BASE_URL_BACKEND}procedure`);
   }
 
-
-// TODO: Get Procedure By ID
-public getProcedures(id:number){
-
-}
-
-
-// TODO: Get all Procedures
-public getAllProcedures(){
-  
-}
+  public getAllProcedures(){
+    return this.httpClient.get(`${BASE_URL_BACKEND}procedure/all`);
+  }
   
 }
