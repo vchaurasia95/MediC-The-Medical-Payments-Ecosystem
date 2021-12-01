@@ -28,14 +28,12 @@ export class AddProcedureComponent implements OnInit {
     console.log('here', value);
 
     this.offChainService.addProcedure({
-      name: value.name, 
+      name: value.name,
       description: value.description
-    }).
-      then((procedure:any) => {
-        // let proc = {
-        //   "_id": 1234
-        // }
-        this.web3Service.addProcedureTypes(procedure._id+"", value.procedureType)
+    }).subscribe
+      ((procedure: any) => {
+
+        this.web3Service.addProcedureTypes(procedure.result._id + "", value.procedureType)
           .then(async (reciept: any) => {
             console.log(`Transcation Reciept-->`, reciept);
             this.snackBarService.openSuccessSnackBar("Participent Successfully Added\nTx #: " + reciept.transactionHash);

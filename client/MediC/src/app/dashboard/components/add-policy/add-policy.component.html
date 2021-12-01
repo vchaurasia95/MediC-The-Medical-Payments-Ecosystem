@@ -1,0 +1,55 @@
+<form [formGroup]="transferForm">
+    <div class="form-container">
+        <div class="row address-row">
+            <div class="col-md-4 col-4 address-col">
+                <mat-form-field appearance="fill">
+                    <mat-label>Critical Coverage %</mat-label>
+                    <input type="number" matInput placeholder="[10-100]" formControlName="criticalCoverage" required>
+                </mat-form-field>
+            </div>
+            <div class="col-md-4 col-4 address-col">
+                <mat-form-field appearance="fill">
+                    <mat-label>Moderate Coverage %</mat-label>
+                    <input type="number" matInput placeholder="[10-100]" formControlName="modCoverage" required>
+                </mat-form-field>
+            </div>
+            <div class="col-md-4 col-4 address-col">
+                <mat-form-field appearance="fill">
+                    <mat-label>Medical Management Coverage %</mat-label>
+                    <input type="number" matInput placeholder="[10-100]" formControlName="mgmtCoverage" required>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-6 name-col">
+                <mat-form-field appearance="fill">
+                    <mat-label>Policy Coverage Amount</mat-label>
+                    <input type="number" matInput formControlName="policyCoverageAmount" required>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6 col-6 email-col">
+                <mat-form-field appearance="fill">
+                    <mat-label>One time Cost</mat-label>
+                    <input type="number" matInput formControlName="policyCost" required>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-12 name-col">
+                <mat-form-field appearance="fill">
+                    <mat-label>Policy Name</mat-label>
+                    <input matInput formControlName="policyName" required>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="row submitbuttom">
+    <div class="col-md-12 col-12">
+        <button (click)="addPolicy()" [disabled]="(!transferForm.valid)" mat-raised-button color="primary">
+            <span>Send</span>
+            <mat-icon class="send-icon">send</mat-icon>
+        </button>
+    </div>
+</div>

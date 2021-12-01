@@ -8,6 +8,9 @@ import { SharedModule } from '../shared.module';
 import { AddNetworkParticipantComponent } from './components/add-network-participant/add-network-participant.component';
 import { AddProcedureComponent } from './components/add-procedure/add-procedure.component';
 import { AddEscrowBalComponent } from './components/add-escrow-bal/add-escrow-bal.component';
+import { AddPolicyComponent } from './components/add-policy/add-policy.component';
+import { EnrollPolicyComponent } from './components/enroll-policy/enroll-policy.component';
+import { ViewPoliciesComponent } from './components/view-policies/view-policies.component';
 
 
 
@@ -17,7 +20,10 @@ import { AddEscrowBalComponent } from './components/add-escrow-bal/add-escrow-ba
     TransferTokenComponent,
     AddNetworkParticipantComponent,
     AddProcedureComponent,
-    AddEscrowBalComponent
+    AddEscrowBalComponent,
+    AddPolicyComponent,
+    EnrollPolicyComponent,
+    ViewPoliciesComponent
   ],
   imports: [
     CommonModule,

@@ -8,11 +8,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { SharedModule } from './shared.module';
+import { AddPatientComponent } from './components/add-patient/add-patient.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    AddPatientComponent
   ],
   imports: [
     BrowserModule,

@@ -5,10 +5,12 @@ import { HomeComponent } from './components/home/home.component';
 import {
   AuthGuardService as AuthGuard
 } from './services/auth-guard.service';
+import { AddPatientComponent } from './components/add-patient/add-patient.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) }
+  { path: 'addPatient', component: AddPatientComponent },
+  { path: 'dashboard', canActivate: [AuthGuard], loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) }
 ];
 
 

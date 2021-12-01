@@ -1,0 +1,67 @@
+.init-page{
+    background-color: rgb(255, 255, 255);
+    height: 100%;
+    flex-flow: column;
+    display: flex; justify-content:center; align-items:center;
+}
+.cont{
+    padding: 15px;
+}
+
+h1{
+    text-align: center;
+    font-family: cursive;
+    font-weight: bolder;
+}
+
+.form-container{
+    height: 100%;
+}
+.row{
+    width: 800px;
+    .col{
+        // padding: 0px !important;
+        padding: 2% !important;
+        padding-bottom: 0px !important;
+        padding-top: 0px !important;
+    }
+}
+mat-form-field{
+    padding: 0;
+    width: 100%;
+    
+}
+mat-select{
+    width: 100% !important;
+}
+button{
+    width: 100% !important;
+}
+.send-icon{
+    padding-left: 10px;
+}
+.progress-spinner{
+ position: absolute;   
+ top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+.progress-title{
+    position: absolute;   
+ top: 63%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+.overlay{
+    height:100vh;
+  width:100%;
+  background-color:rgba(27, 27, 27, 0.616);
+  z-index:    10;
+  top:        0; 
+  left:       0; 
+  position:   fixed;
+}

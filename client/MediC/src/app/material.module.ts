@@ -93,7 +93,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     OverlayModule,
     MatTreeModule,
     MatNativeDateModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatProgressSpinnerModule
   ]
 })
 export class MaterialModule { }

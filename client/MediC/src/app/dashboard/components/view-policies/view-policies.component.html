@@ -1,0 +1,16 @@
+<div class="container">
+    <div *ngFor="let chunk of policies" class="row">
+        <div *ngFor="let policy of chunk" class="col-md-4">
+            <mat-card class="example-card">
+                <mat-card-title-group>
+                    <mat-card-title>{{policy.pol.name}}</mat-card-title>
+                    <mat-card-subtitle> <b>Total Coverage:</b> {{policy.pol.total_coverage}} <b>Cost:</b>
+                        {{policy.pol.cost}}</mat-card-subtitle>
+                </mat-card-title-group>
+                <mat-card-content>
+                    {{longText}}
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

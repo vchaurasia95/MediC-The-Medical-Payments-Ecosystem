@@ -6,6 +6,9 @@ import { TransferTokenComponent } from './components/transfer-token/transfer-tok
 import { AddNetworkParticipantComponent } from './components/add-network-participant/add-network-participant.component';
 import { AddProcedureComponent } from './components/add-procedure/add-procedure.component';
 import { AddEscrowBalComponent } from './components/add-escrow-bal/add-escrow-bal.component';
+import { AddPolicyComponent } from './components/add-policy/add-policy.component';
+import { EnrollPolicyComponent } from './components/enroll-policy/enroll-policy.component';
+import { ViewPoliciesComponent } from './components/view-policies/view-policies.component';
 
 const routes: Routes = [
   {
@@ -14,6 +17,9 @@ const routes: Routes = [
       { path: 'add-participant', component: AddNetworkParticipantComponent },
       { path: 'add-procedure', component: AddProcedureComponent },
       { path: 'add-escrow-bal', component: AddEscrowBalComponent },
+      { path: 'add-policy', component: AddPolicyComponent },
+      { path: 'enroll-policy', component: EnrollPolicyComponent },
+      { path: 'view-policies', component: ViewPoliciesComponent }
     ]
   },
 ]

@@ -18,8 +18,8 @@ export class OffChainService {
 
   // ! POST METHODS
 
-  public async createUser(details:Object){
-    return await this.httpClient.post<any>(`${BASE_URL_BACKEND}user/register`, {
+  public createUser(details:Object){
+    return this.httpClient.post<any>(`${BASE_URL_BACKEND}user/register`, {
       details:details
     })
   }
@@ -43,7 +43,7 @@ export class OffChainService {
     })
   }
 
-  public async addProcedure(details: Object){
+  public addProcedure(details: Object){
     return this.httpClient.post(`${BASE_URL_BACKEND}procedure`, {
       details:details
     })

@@ -1,0 +1,38 @@
+<div class="init-page">
+    <div class="mat-elevation-z8 cont">
+        <h1>Enroll as a Patient</h1>
+        <form [formGroup]="transferForm">
+            <div class="form-container">
+
+                <div class="row">
+                    <div class="col-md-6 col-6 name-col">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Name</mat-label>
+                            <input matInput formControlName="name" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6 col-6 email-col">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Email</mat-label>
+                            <input matInput formControlName="email" required>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="row submitbuttom">
+            <div class="col-md-12 col-12">
+                <button (click)="addParticipant()" [disabled]="(!transferForm.valid)" mat-raised-button color="primary">
+                    <span>Send</span>
+                    <mat-icon class="send-icon">send</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="spinnerFlag == 1" class="overlay">
+        <mat-progress-spinner class="progress-spinner" color="amber" mode="indeterminate">
+        </mat-progress-spinner>
+        <h1 class="progress-title">Adding you to the Network. Please Wait!</h1>
+    </div>
+
+</div>

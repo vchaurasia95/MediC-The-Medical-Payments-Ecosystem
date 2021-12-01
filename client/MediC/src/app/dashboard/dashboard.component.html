@@ -23,13 +23,19 @@
             </div>
 
             <mat-nav-list>
-                <div>
+                <div *ngIf="userType == 1">
                     <a mat-list-item [routerLink]="['add-participant']"> Add Network Participant </a>
                     <a mat-list-item [routerLink]="['transfer-token']"> Transfer MediC </a>
                     <a mat-list-item [routerLink]="['add-procedure']"> Add Procedure </a>
                 </div>
 
-                <a mat-list-item href="..."> Enroll Insurance </a>
+                <div *ngIf="userType == 3">
+                    <a mat-list-item [routerLink]="['add-policy']"> Add Insurance Policy </a>
+                    <a mat-list-item [routerLink]="['view-policies']"> View All Policies </a>
+                    <a mat-list-item [routerLink]="['get-enrolled-customers']"> Enrolled Cutomers </a>
+                </div>
+
+                <a mat-list-item [routerLink]="['enroll-policy']"> Enroll Insurance </a>
                 <a mat-list-item href="..."> Pay Bill </a>
                 <a mat-list-item href="..."> View Network Hospitals </a>
                 <a mat-list-item href="..."> View Agreement </a>
@@ -37,7 +43,8 @@
                 <a mat-list-item href="..."> Admit Patient </a>
                 <a mat-list-item href="..."> Check Insurance </a>
                 <a mat-list-item href="..."> Generate Bill </a>
-                <a mat-list-item [routerLink]="['add-escrow-bal']"> Add Escrow Balance </a>
+                <a mat-list-item *ngIf="userType==2 || userType==3" [routerLink]="['add-escrow-bal']"> Add Escrow
+                    Balance </a>
             </mat-nav-list>
         </mat-sidenav>
 

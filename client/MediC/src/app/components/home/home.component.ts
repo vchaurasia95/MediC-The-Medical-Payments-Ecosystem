@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
 
   public isMetamaskAvailable = false;
 
-  constructor(private web3service: Web3Service, private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer, private router : Router) {
+  constructor(private web3service: Web3Service, private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer, private router: Router) {
     this.matIconRegistry.addSvgIcon(
       `metamask_icon`,
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/metamask.svg")
@@ -25,7 +25,11 @@ export class HomeComponent implements OnInit {
   async connectMetamask() {
     const connected = await this.web3service.connectMetamask();
     if (connected) {
-      this.router.navigate(['/dashboard']);
+      const conf = JSON.parse(localStorage.getItem('conf') || '{}')
+      if (conf.userType && conf.userType > 0)
+        this.router.navigate(['/dashboard']);
+      else
+        this.router.navigate(['/addPatient']);
     }
   }
 

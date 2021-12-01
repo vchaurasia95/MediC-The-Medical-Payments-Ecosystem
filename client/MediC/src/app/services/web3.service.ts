@@ -265,16 +265,8 @@ export class Web3Service {
     });
   }
 
-  public async viewPolicy(policy_id: Number) {
-    // TODO: Check output with valid policy id and output format.
-
-    return this.contract.methods.getProcedureType(policy_id).call((_error: any, _result: any) => {
-      if (_error) {
-        throw Error(_error.message)
-      }
-      console.log(`Policy for ${policy_id}: ${_result}`)
-      return _result;
-    });
+  public async viewPolicy(policy_id: string) {
+    return this.contract.methods.viewPolicy(policy_id).call({ from: this.account_addresses[0] });
   }
 
   public getdefaultAccount() {
@@ -286,7 +278,7 @@ export class Web3Service {
   }
 
   public transferToken(address: String, amount: number) {
-    const amt = BigInt(amount*Math.pow(10,18)).toString();
+    const amt = BigInt(amount * Math.pow(10, 18)).toString();
     return this.contract.methods.transfer(address, amt).send({ from: this.account_addresses[0] })
       .on('transactionHash', (hash: any) => {
         console.log(`Transcation #--> ${hash}`);
@@ -309,8 +301,8 @@ export class Web3Service {
         this.snackBarService.openErrorSnackBar('Transaction error,Check Console!!');
       });
   }
-  public addProcedureTypes(procedureId:string, procedureType:string){
-    return this.contract.methods.addProcedureType(procedureId , procedureType).send({ from: this.account_addresses[0] })
+  public addProcedureTypes(procedureId: string, procedureType: string) {
+    return this.contract.methods.addProcedureType(procedureId, procedureType).send({ from: this.account_addresses[0] })
       .on('transactionHash', (hash: any) => {
         console.log(`Transcation #--> ${hash}`);
         this.snackBarService.openWarnSnackBar('Transaction Sent Successfully!\nTx #: ' + hash);
@@ -321,9 +313,35 @@ export class Web3Service {
       });
   }
 
-  public addEscrowBal(amount:string){
-    const amt = BigInt(parseInt(amount)*Math.pow(10,18)).toString();
+  public addEscrowBal(amount: string) {
+    const amt = BigInt(parseInt(amount) * Math.pow(10, 18)).toString();
     return this.contract.methods.addEscrowBalance(amt).send({ from: this.account_addresses[0] })
+      .on('transactionHash', (hash: any) => {
+        console.log(`Transcation #--> ${hash}`);
+        this.snackBarService.openWarnSnackBar('Transaction Sent Successfully!\nTx #: ' + hash);
+      })
+      .on('error', (error: any, receipt: any) => {
+        console.log(`Transcation Error-->`, error);
+        this.snackBarService.openErrorSnackBar('Transaction error,Check Console!!');
+      });
+  }
+
+  public addPatient() {
+    return this.contract.methods.addPatients().send({ from: this.account_addresses[0] })
+      .on('transactionHash', (hash: any) => {
+        console.log(`Transcation #--> ${hash}`);
+        this.snackBarService.openWarnSnackBar('Transaction Sent Successfully!\nTx #: ' + hash);
+      })
+      .on('error', (error: any, receipt: any) => {
+        console.log(`Transcation Error-->`, error);
+        this.snackBarService.openErrorSnackBar('Transaction error,Check Console!!');
+      });
+  }
+
+  public addPolicy(coverage: any, policyMax: string, policyCost: string, policyId: string) {
+    const max = BigInt(parseInt(policyMax) * Math.pow(10, 18)).toString();
+    const cost = BigInt(parseInt(policyCost) * Math.pow(10, 18)).toString();
+    return this.contract.methods.addPolicy(coverage, max, cost, policyId, policyId).send({ from: this.account_addresses[0] })
       .on('transactionHash', (hash: any) => {
         console.log(`Transcation #--> ${hash}`);
         this.snackBarService.openWarnSnackBar('Transaction Sent Successfully!\nTx #: ' + hash);
