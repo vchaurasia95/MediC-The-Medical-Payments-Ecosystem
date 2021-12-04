@@ -11,6 +11,8 @@ import { AddEscrowBalComponent } from './components/add-escrow-bal/add-escrow-ba
 import { AddPolicyComponent } from './components/add-policy/add-policy.component';
 import { EnrollPolicyComponent } from './components/enroll-policy/enroll-policy.component';
 import { ViewPoliciesComponent } from './components/view-policies/view-policies.component';
+import { AddDoctorComponent } from './components/add-doctor/add-doctor.component';
+import { AddProcedureCostComponent } from './components/add-procedure-cost/add-procedure-cost.component';
 
 
 
@@ -23,7 +25,9 @@ import { ViewPoliciesComponent } from './components/view-policies/view-policies.
     AddEscrowBalComponent,
     AddPolicyComponent,
     EnrollPolicyComponent,
-    ViewPoliciesComponent
+    ViewPoliciesComponent,
+    AddDoctorComponent,
+    AddProcedureCostComponent
   ],
   imports: [
     CommonModule,

@@ -9,6 +9,8 @@ import { AddEscrowBalComponent } from './components/add-escrow-bal/add-escrow-ba
 import { AddPolicyComponent } from './components/add-policy/add-policy.component';
 import { EnrollPolicyComponent } from './components/enroll-policy/enroll-policy.component';
 import { ViewPoliciesComponent } from './components/view-policies/view-policies.component';
+import { AddDoctorComponent } from './components/add-doctor/add-doctor.component';
+import { AddProcedureCostComponent } from './components/add-procedure-cost/add-procedure-cost.component';
 
 const routes: Routes = [
   {
@@ -19,7 +21,9 @@ const routes: Routes = [
       { path: 'add-escrow-bal', component: AddEscrowBalComponent },
       { path: 'add-policy', component: AddPolicyComponent },
       { path: 'enroll-policy', component: EnrollPolicyComponent },
-      { path: 'view-policies', component: ViewPoliciesComponent }
+      { path: 'view-policies', component: ViewPoliciesComponent },
+      { path: 'add-doctor', component: AddDoctorComponent },
+      { path: 'add-procedures-cost', component: AddProcedureCostComponent }
     ]
   },
 ]

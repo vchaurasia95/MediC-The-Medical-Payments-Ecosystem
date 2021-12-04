@@ -18,6 +18,8 @@ export class Web3Service {
   private contract_balance: any;
   private no_of_doctors: any;
   private connected_user_type: any;
+  private BigNumber: any;
+  private decimals: any;
 
   tokentSubject = new BehaviorSubject<number>(0);
   escrowSubject = new BehaviorSubject<number>(0);
@@ -45,7 +47,9 @@ export class Web3Service {
         method: 'eth_chainId'
       });
       await provider.request({ method: 'eth_requestAccounts' });
-      this.web3 = new Web3(provider);
+      this.web3 = await new Web3(provider);
+      this.BigNumber = this.web3.utils.BN;
+      this.decimals = new this.BigNumber(Math.pow(10, 18).toString());
       this.account_addresses = await this.getAddress();
       console.log(`Connected Account Address : ${this.account_addresses}`)
       if (this.account_addresses > 0) {
@@ -229,7 +233,7 @@ export class Web3Service {
     });
   }
 
-  public async getProcedureCost(procedure_id: Number) {
+  public getProcedureCost(procedure_id: Number) {
     // TODO: Check output with valid procedure id and output format.
 
     return this.contract.methods.getProcedureCost(procedure_id).call((_error: any, _result: any) => {
@@ -278,7 +282,9 @@ export class Web3Service {
   }
 
   public transferToken(address: String, amount: number) {
-    const amt = BigInt(amount * Math.pow(10, 18)).toString();
+    // const amt = BigInt(amount * Math.pow(10, 18)).toString();
+    var a = new this.BigNumber(amount);
+    const amt = a.mul(this.decimals).toString();
     return this.contract.methods.transfer(address, amt).send({ from: this.account_addresses[0] })
       .on('transactionHash', (hash: any) => {
         console.log(`Transcation #--> ${hash}`);
@@ -301,6 +307,34 @@ export class Web3Service {
         this.snackBarService.openErrorSnackBar('Transaction error,Check Console!!');
       });
   }
+  public addProceduresCost(procedure_id: any, proc_cost: any) {
+    const finalCost = proc_cost.map( (cost:number) => {
+      let cbn = new this.BigNumber(cost);
+      return cbn.mul(this.decimals).toString();
+    });
+    console.log(finalCost);
+    return this.contract.methods.addBulkProcedureCost(procedure_id, finalCost).send({ from: this.account_addresses[0] })
+      .on('transactionHash', (hash: any) => {
+        console.log(`Transcation #--> ${hash}`);
+        this.snackBarService.openWarnSnackBar('Transaction Sent Successfully!\nTx #: ' + hash);
+      })
+      .on('error', (error: any, receipt: any) => {
+        console.log(`Transcation Error-->`, error);
+        this.snackBarService.openErrorSnackBar('Transaction error,Check Console!!');
+      });
+  }
+  public addDoctor(address: string) {
+    return this.contract.methods.addDoctor(address).send({ from: this.account_addresses[0] })
+      .on('transactionHash', (hash: any) => {
+        console.log(`Transcation #--> ${hash}`);
+        this.snackBarService.openWarnSnackBar('Transaction Sent Successfully!\nTx #: ' + hash);
+      })
+      .on('error', (error: any, receipt: any) => {
+        console.log(`Transcation Error-->`, error);
+        this.snackBarService.openErrorSnackBar('Transaction error,Check Console!!');
+      });
+  }
+
   public addProcedureTypes(procedureId: string, procedureType: string) {
     return this.contract.methods.addProcedureType(procedureId, procedureType).send({ from: this.account_addresses[0] })
       .on('transactionHash', (hash: any) => {
@@ -314,7 +348,8 @@ export class Web3Service {
   }
 
   public addEscrowBal(amount: string) {
-    const amt = BigInt(parseInt(amount) * Math.pow(10, 18)).toString();
+    var a = new this.BigNumber(amount);
+    const amt = a.mul(this.decimals).toString();
     return this.contract.methods.addEscrowBalance(amt).send({ from: this.account_addresses[0] })
       .on('transactionHash', (hash: any) => {
         console.log(`Transcation #--> ${hash}`);
@@ -339,8 +374,11 @@ export class Web3Service {
   }
 
   public addPolicy(coverage: any, policyMax: string, policyCost: string, policyId: string) {
-    const max = BigInt(parseInt(policyMax) * Math.pow(10, 18)).toString();
-    const cost = BigInt(parseInt(policyCost) * Math.pow(10, 18)).toString();
+    var m = new this.BigNumber(policyMax);
+    var c = new this.BigNumber(policyCost);
+    const max = m.mul(this.decimals).toString();
+    const cost = c.mul(this.decimals).toString();
+    console.log(`Max ${max}   Cost ${cost}`);
     return this.contract.methods.addPolicy(coverage, max, cost, policyId, policyId).send({ from: this.account_addresses[0] })
       .on('transactionHash', (hash: any) => {
         console.log(`Transcation #--> ${hash}`);

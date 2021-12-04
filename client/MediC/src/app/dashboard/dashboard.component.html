@@ -35,14 +35,25 @@
                     <a mat-list-item [routerLink]="['get-enrolled-customers']"> Enrolled Cutomers </a>
                 </div>
 
-                <a mat-list-item [routerLink]="['enroll-policy']"> Enroll Insurance </a>
-                <a mat-list-item href="..."> Pay Bill </a>
+                <div *ngIf="userType == 5">
+                    <a mat-list-item [routerLink]="['enroll-policy']"> Enroll Insurance </a>
+                    <a mat-list-item href="..."> Pay Bill </a>
+                </div>
+
+
                 <a mat-list-item href="..."> View Network Hospitals </a>
-                <a mat-list-item href="..."> View Agreement </a>
-                <a mat-list-item href="..."> Add Doctor </a>
-                <a mat-list-item href="..."> Admit Patient </a>
-                <a mat-list-item href="..."> Check Insurance </a>
-                <a mat-list-item href="..."> Generate Bill </a>
+                <div *ngIf="userType == 4">
+                    <a mat-list-item href="..."> Add Patient Procedure </a>
+                    <a mat-list-item href="..."> View My Agreement </a>
+                </div>
+                <div *ngIf="userType == 2">
+                    <a mat-list-item [routerLink]="['add-doctor']"> Add Doctor </a>
+                    <a mat-list-item [routerLink]="['add-procedures-cost']"> Add Procedure Costs </a>
+                    <a mat-list-item href="..."> Admit Patient </a>
+                    <a mat-list-item href="..."> Check Insurance </a>
+                    <a mat-list-item href="..."> Generate Patient Bill </a>
+                </div>
+
                 <a mat-list-item *ngIf="userType==2 || userType==3" [routerLink]="['add-escrow-bal']"> Add Escrow
                     Balance </a>
             </mat-nav-list>
