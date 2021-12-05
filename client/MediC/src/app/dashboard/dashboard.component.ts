@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SnackbarService } from '../services/snackbar.service';
 import { Web3Service } from '../services/web3.service';
 
 @Component({
@@ -13,8 +14,11 @@ export class DashboardComponent implements OnInit {
   balance = 0;
   escrowBalance = 0;
   userType: number = 0;
+  userAccountAddress:any;
+  patientPolicyFlag:Boolean = false;
+
   typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
-  constructor(private web3Service: Web3Service, public router: Router) {
+  constructor(private web3Service: Web3Service, public router: Router, private snackBarService:SnackbarService) {
     this.web3Service.setTokenBalance().then(() => console.log('done'));
     this.web3Service.tokentSubject.subscribe((val: any) => {
       this.balance = Math.round(parseInt(val) / (Math.pow(10, 18)));
@@ -38,5 +42,20 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['']);
   }
   
+  public async getPatientPolicy(){
+    let addrs = await this.web3Service.getAddress();
+    this.userAccountAddress = addrs[0];
+    this.web3Service.getPatientPolicy(this.userAccountAddress)
+    .then(async(reciept:any) => {
+      console.log(`Transcation Reciept-->`, reciept);
+      // this.snackBarService.openSuccessSnackBar("Policy successfully enrolled\nTx #: " + reciept.transactionHash);
+
+      
+
+    }).catch((error:any) => {
+      console.log(`Transcation Error-->`, error);
+      this.snackBarService.openErrorSnackBar("Error Encountered, Check Console!");
+    })
+  }
 
 }
