@@ -19,14 +19,13 @@ export class DashboardComponent implements OnInit {
 
   typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
   constructor(private web3Service: Web3Service, public router: Router, private snackBarService:SnackbarService) {
-    this.web3Service.setTokenBalance().then(() => console.log('done'));
     this.web3Service.tokentSubject.subscribe((val: any) => {
       this.balance = Math.round(parseInt(val) / (Math.pow(10, 18)));
     });
     this.web3Service.escrowSubject.subscribe((val: any) => {
       this.escrowBalance = Math.round(parseInt(val) / (Math.pow(10, 18)))
     });
-    this.balance = this.web3Service.escrowSubject.getValue();
+    
   }
 
   ngOnInit(): void {
@@ -35,6 +34,9 @@ export class DashboardComponent implements OnInit {
       this.userType = conf.userType;
     this.web3Service.getAddress().then((addresses) => this.options = addresses);
     this.selected = this.web3Service.getdefaultAccount();
+    this.escrowBalance = this.web3Service.escrowSubject.getValue();
+    this.web3Service.getEscrowBalance().then(() => console.log('done'));
+    this.web3Service.setTokenBalance().then(() => console.log('done'));
   }
 
   logout(){

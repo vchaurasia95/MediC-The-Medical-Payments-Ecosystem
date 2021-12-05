@@ -28,6 +28,8 @@ export class AddPatientComponent implements OnInit {
   async addParticipant() {
     this.spinnerFlag = 1;
     const value = this.transferForm.value;
+    const address: any = await this.web3Service.getAddress();
+    console.log(address[0]);
     this.web3Service.addPatient()
       .then(async (reciept: any) => {
         console.log(`Transcation Reciept-->`, reciept);
@@ -35,9 +37,9 @@ export class AddPatientComponent implements OnInit {
         this.offChainService.createUser({
           name: value.name,
           email: value.email,
-          address: value.address
+          address: address[0]
         }).subscribe(data => {
-          console.log("data",data);
+          console.log("data-->", data);
           const conf = {
             userType: '5'
           };
@@ -53,7 +55,7 @@ export class AddPatientComponent implements OnInit {
         this.spinnerFlag = 0;
         this.transferForm.reset();
       })
-    
+
   }
 
 }

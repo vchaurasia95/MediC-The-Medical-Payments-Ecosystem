@@ -49,6 +49,7 @@ export class AddDoctorComponent implements OnInit {
               this.snackBarService.openErrorSnackBar("Error Encountered, Check Console!");
             });
         });
+        this.transferForm.reset();
 
       } else {
         this.snackBarService.openWarnSnackBar("Invalid Address Provided/ Address already in Network");
