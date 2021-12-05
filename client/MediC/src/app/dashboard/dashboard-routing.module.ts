@@ -12,6 +12,9 @@ import { ViewPoliciesComponent } from './components/view-policies/view-policies.
 import { AddDoctorComponent } from './components/add-doctor/add-doctor.component';
 import { AddProcedureCostComponent } from './components/add-procedure-cost/add-procedure-cost.component';
 import { HospatlizePatientComponent } from './components/hospatlize-patient/hospatlize-patient.component';
+import { PatientProcedureComponent } from './components/patient-procedure/patient-procedure.component';
+import { CheckInsuranceComponent } from './components/check-insurance/check-insurance.component';
+import { GenerateBillComponent } from './components/generate-bill/generate-bill.component';
 
 const routes: Routes = [
   {
@@ -25,8 +28,11 @@ const routes: Routes = [
       { path: 'view-policies', component: ViewPoliciesComponent },
       { path: 'add-doctor', component: AddDoctorComponent },
       { path: 'add-procedures-cost', component: AddProcedureCostComponent },
-      { path: 'hospatlize', component: HospatlizePatientComponent }
-    ]
+      { path: 'hospatlize', component: HospatlizePatientComponent },
+      {path: 'add-patient-procedure', component: PatientProcedureComponent},
+      {path: 'check-insurance', component: CheckInsuranceComponent},
+      {path: 'generate-bill', component: GenerateBillComponent}
+    ] 
   },
 ]
 

@@ -438,18 +438,16 @@ export class Web3Service {
       this.snackBarService.openErrorSnackBar('Transaction error,Check Console!!');
     });
   }
-  
-  public getAssociatedHospital() {
+
+  public async getAssociatedHospital() {
     return this.contract.methods.getAssociatedHospital(this.account_addresses[0])
-    .send({ from: this.account_addresses[0] })
-    .on('transactionHash', (hash: any) => {
-      console.log(`Transcation #--> ${hash}`);
-      this.snackBarService.openWarnSnackBar('Transaction Sent Successfully!\nTx #: ' + hash);
-    })
-    .on('error', (error: any, receipt: any) => {
-      console.log(`Transcation Error-->`, error);
-      this.snackBarService.openErrorSnackBar('Transaction error,Check Console!!');
-    });
+      .call((_error: any, _result: any) => {
+        if (_error) {
+          throw Error(_error.message)
+        }
+        console.log(`Associated Hospital: ${_result}`)
+        return _result;
+      });
   }
 }
 

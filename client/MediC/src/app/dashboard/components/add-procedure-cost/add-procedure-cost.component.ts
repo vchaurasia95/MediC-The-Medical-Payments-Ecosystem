@@ -28,7 +28,7 @@ export class AddProcedureCostComponent implements OnInit {
         console.log(proc);
       }
       this.procedures = await this.divideIntoChunks(data.result, 3);
-    })
+    });
   }
 
   async addParticipant() {

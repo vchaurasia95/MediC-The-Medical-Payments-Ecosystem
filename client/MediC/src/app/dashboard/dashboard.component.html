@@ -44,15 +44,15 @@
 
                 <a mat-list-item href="..."> View Network Hospitals </a>
                 <div *ngIf="userType == 4">
-                    <a mat-list-item href="..."> Add Patient Procedure </a>
+                    <a mat-list-item [routerLink]="['add-patient-procedure']"> Add Patient Procedure </a>
                     <a mat-list-item href="..."> View My Agreement </a>
                 </div>
                 <div *ngIf="userType == 2">
                     <a mat-list-item [routerLink]="['add-doctor']"> Add Doctor </a>
                     <a mat-list-item [routerLink]="['add-procedures-cost']"> Add Procedure Costs </a>
                     <a mat-list-item [routerLink]="['hospatlize']"> Admit Patient </a>
-                    <a mat-list-item href="..."> Check Insurance </a>
-                    <a mat-list-item href="..."> Generate Patient Bill </a>
+                    <a mat-list-item [routerLink]="['check-insurance']"> Check Insurance </a>
+                    <a mat-list-item [routerLink]="['generate-bill']"> Generate Patient Bill </a>
                 </div>
 
                 <a mat-list-item *ngIf="userType==2 || userType==3" [routerLink]="['add-escrow-bal']"> Add Escrow

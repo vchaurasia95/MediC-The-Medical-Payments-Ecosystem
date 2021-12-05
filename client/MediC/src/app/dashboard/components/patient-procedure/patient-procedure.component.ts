@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { OffChainService } from 'src/app/services/off-chain.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { Web3Service } from 'src/app/services/web3.service';
@@ -10,29 +11,61 @@ import { Web3Service } from 'src/app/services/web3.service';
 })
 export class PatientProcedureComponent implements OnInit {
 
-  constructor(private web3Service: Web3Service, private snackbarService: SnackbarService,
+  admittedPatients: any = [];
+  procedures: any = [];
+  users: any = [];
+  transferForm: any;
+  constructor(private web3Service: Web3Service, private fb: FormBuilder, private snackbarService: SnackbarService,
     private offchainService: OffChainService) { }
 
-  ngOnInit(): void {
-    this.getAdmittedPatients().then((data)=>{console.log(`Done ${data}`)});
+  async ngOnInit() {
+    this.getAdmittedPatients().then((data) => { console.log(`Done ${data}`) });
+    this.transferForm = this.fb.group({
+      description: ['', Validators.compose([Validators.required])],
+      patient: ['', Validators.required],
+      procedure: ['', Validators.required]
+    });
+
+    this.users = await this.offchainService.getAllUserDetails().toPromise();
+    this.users = this.users.result;
+    console.log(this.users);
+    this.getAllProcedures();
   }
 
 
-  async addPatientProcedure() {
 
+
+  async addPatientProcedure() {
+    const value = this.transferForm.value;
+    console.log(value);
+    // this.offchainService
   }
 
   async getAdmittedPatients() {
     //get associated hospital
     const hospitalAddress = await this.web3Service.getAssociatedHospital();
-    //get hospital records of that hospital
     this.offchainService.getAllHospitalizationRecords()
-      .subscribe((data) => {
-        console.log(data);
-      })
-    // filter where bill is settlled
-    //get
+      .subscribe(async (data: any) => {
+        this.admittedPatients = data.result.filter((rec: any) => rec.details.hospital == hospitalAddress && (!rec.details.billId));
+        this.admittedPatients = await Promise.all(this.admittedPatients.map(async (rec: any) => {
+          let patientDetails = await this.getUserDetails(rec.details.patient);
+          console.log(patientDetails);
+          rec.details.name = patientDetails[0].details.name;
+          rec.details.email = patientDetails[0].details.email;
+          return rec;
+        }));
+      });
   }
 
+  getAllProcedures() {
+    this.offchainService.getAllProcedures().subscribe(async (data: any) => {
+      this.procedures = data.result;
+    });
+  }
+
+  async getUserDetails(userAddress: string) {
+    let usr = this.users.filter((user: any) => user.details.address == userAddress);
+    return usr;
+  }
 
 }

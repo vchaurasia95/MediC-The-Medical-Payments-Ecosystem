@@ -1,1 +1,46 @@
-<p>patient-procedure works!</p>
+<form [formGroup]="transferForm">
+    <div class="form-container">
+        <div class="row address-row">
+            <div class="col-md-12 col-12 select-col">
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose Admitted Patient</mat-label>
+                    <mat-select formControlName="patient">
+                        <mat-option *ngFor="let patient of admittedPatients" value="patient.details.patient">
+                            {{patient.details.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row address-row">
+            <div class="col-md-12 col-12 select-col">
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose Procedure Performed</mat-label>
+                    <mat-select formControlName="procedure">
+                        <mat-option *ngFor="let procedure of procedures" value="procedure._id">
+                            {{procedure.details.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-12">
+                <mat-form-field appearance="fill">
+                    <mat-label>Description</mat-label>
+                    <textarea formControlName="description" matInput placeholder="Procedure Description"
+                        required></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+
+    </div>
+</form>
+<div class="row submitbuttom">
+    <div class="col-md-12 col-12">
+        <button (click)="addPatientProcedure()" mat-raised-button color="primary">
+            <span>Send</span>
+            <mat-icon class="send-icon">send</mat-icon>
+        </button>
+    </div>
+</div>

@@ -15,6 +15,9 @@ import { AddDoctorComponent } from './components/add-doctor/add-doctor.component
 import { AddProcedureCostComponent } from './components/add-procedure-cost/add-procedure-cost.component';
 import { HospatlizePatientComponent } from './components/hospatlize-patient/hospatlize-patient.component';
 import { PatientProcedureComponent } from './components/patient-procedure/patient-procedure.component';
+import { CheckInsuranceComponent } from './components/check-insurance/check-insurance.component';
+import { GenerateBillComponent } from './components/generate-bill/generate-bill.component';
+import { PolicyDialogComponent } from './components/policy-dialog/policy-dialog.component';
 
 
 
@@ -31,7 +34,10 @@ import { PatientProcedureComponent } from './components/patient-procedure/patien
     AddDoctorComponent,
     AddProcedureCostComponent,
     HospatlizePatientComponent,
-    PatientProcedureComponent
+    PatientProcedureComponent,
+    CheckInsuranceComponent,
+    GenerateBillComponent,
+    PolicyDialogComponent
   ],
   imports: [
     CommonModule,
