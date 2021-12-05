@@ -2,7 +2,7 @@
 
     <mat-sidenav-container class="example-container" autosize>
 
-        <mat-sidenav #sidenav mode="side" opened class="example-sidenav" fixedInViewport="false">
+        <mat-sidenav #sidenav mode="side" opened class="example-sidenav" fixedInViewport="true">
 
             <div class="row admin-icon">
                 <mat-icon *ngIf="userType == 1">
@@ -49,7 +49,7 @@
                 <div *ngIf="userType == 2">
                     <a mat-list-item [routerLink]="['add-doctor']"> Add Doctor </a>
                     <a mat-list-item [routerLink]="['add-procedures-cost']"> Add Procedure Costs </a>
-                    <a mat-list-item href="..."> Admit Patient </a>
+                    <a mat-list-item [routerLink]="['hospatlize']"> Admit Patient </a>
                     <a mat-list-item href="..."> Check Insurance </a>
                     <a mat-list-item href="..."> Generate Patient Bill </a>
                 </div>

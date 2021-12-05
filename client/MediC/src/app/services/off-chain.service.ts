@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-const BASE_URL_BACKEND = `http://localhost:4041/api/`
+const BASE_URL_BACKEND = `http://3.145.3.165:4041/api/`
 var options = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json'
@@ -24,8 +24,8 @@ export class OffChainService {
     })
   }
 
-  public async addAgreement(details:Object){
-    return await this.httpClient.post(`${BASE_URL_BACKEND}agreement`, {
+  public addAgreement(details:Object){
+    return this.httpClient.post(`${BASE_URL_BACKEND}agreement`, {
         details:details
     })
   }

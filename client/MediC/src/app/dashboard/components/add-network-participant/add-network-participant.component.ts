@@ -33,7 +33,8 @@ export class AddNetworkParticipantComponent implements OnInit {
           this.snackBarService.openSuccessSnackBar("Participent Successfully Added\nTx #: " + reciept.transactionHash);
           let response = await this.offChainService.createUser({
             name: value.name,
-            email: value.email
+            email: value.email,
+            address: value.address
           }).subscribe(data => {
             console.log(data)
           });

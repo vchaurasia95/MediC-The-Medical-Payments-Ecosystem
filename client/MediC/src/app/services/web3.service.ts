@@ -308,7 +308,7 @@ export class Web3Service {
       });
   }
   public addProceduresCost(procedure_id: any, proc_cost: any) {
-    const finalCost = proc_cost.map( (cost:number) => {
+    const finalCost = proc_cost.map((cost: number) => {
       let cbn = new this.BigNumber(cost);
       return cbn.mul(this.decimals).toString();
     });
@@ -323,8 +323,8 @@ export class Web3Service {
         this.snackBarService.openErrorSnackBar('Transaction error,Check Console!!');
       });
   }
-  public addDoctor(address: string) {
-    return this.contract.methods.addDoctor(address).send({ from: this.account_addresses[0] })
+  public addDoctor(address: string, agreementId: string) {
+    return this.contract.methods.addDoctor(address, agreementId).send({ from: this.account_addresses[0] })
       .on('transactionHash', (hash: any) => {
         console.log(`Transcation #--> ${hash}`);
         this.snackBarService.openWarnSnackBar('Transaction Sent Successfully!\nTx #: ' + hash);
@@ -380,6 +380,32 @@ export class Web3Service {
     const cost = c.mul(this.decimals).toString();
     console.log(`Max ${max}   Cost ${cost}`);
     return this.contract.methods.addPolicy(coverage, max, cost, policyId, policyId).send({ from: this.account_addresses[0] })
+      .on('transactionHash', (hash: any) => {
+        console.log(`Transcation #--> ${hash}`);
+        this.snackBarService.openWarnSnackBar('Transaction Sent Successfully!\nTx #: ' + hash);
+      })
+      .on('error', (error: any, receipt: any) => {
+        console.log(`Transcation Error-->`, error);
+        this.snackBarService.openErrorSnackBar('Transaction error,Check Console!!');
+      });
+  }
+
+  public addHospitalizationRecord(patientAddress: string, recordId: string) {
+    const timestamp = Date.now();
+    return this.contract.methods.addHospitlizationRec(patientAddress, recordId, timestamp).send({ from: this.account_addresses[0] })
+      .on('transactionHash', (hash: any) => {
+        console.log(`Transcation #--> ${hash}`);
+        this.snackBarService.openWarnSnackBar('Transaction Sent Successfully!\nTx #: ' + hash);
+      })
+      .on('error', (error: any, receipt: any) => {
+        console.log(`Transcation Error-->`, error);
+        this.snackBarService.openErrorSnackBar('Transaction error,Check Console!!');
+      });
+  }
+
+  public getAssociatedHospital() {
+    return this.contract.methods.getAssociatedHospital(this.account_addresses[0])
+      .send({ from: this.account_addresses[0] })
       .on('transactionHash', (hash: any) => {
         console.log(`Transcation #--> ${hash}`);
         this.snackBarService.openWarnSnackBar('Transaction Sent Successfully!\nTx #: ' + hash);

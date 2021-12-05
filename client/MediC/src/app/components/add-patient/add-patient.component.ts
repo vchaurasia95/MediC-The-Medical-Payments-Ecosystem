@@ -34,7 +34,8 @@ export class AddPatientComponent implements OnInit {
         this.snackBarService.openSuccessSnackBar("Patient Successfully Added\nTx #: " + reciept.transactionHash);
         await this.offChainService.createUser({
           name: value.name,
-          email: value.email
+          email: value.email,
+          address: value.address
         }).subscribe(data => {
           console.log("data");
           const conf = {

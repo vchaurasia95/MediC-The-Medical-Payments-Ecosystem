@@ -1,25 +1,23 @@
-<!-- <mat-card> -->
-    <form [formGroup]="transferForm">
-        <div class="form-container">
-            <div class="row address">
-                <mat-form-field appearance="fill">
-                    <mat-label>Enter Recipient Address</mat-label>
-                    <input matInput formControlName="address" required>
-                </mat-form-field>
-            </div>
-
-            <div class="row amount">
-                <mat-form-field appearance="fill">
-                    <mat-label>Amount</mat-label>
-                    <input type="number" matInput formControlName="amount" required>
-                </mat-form-field>
-            </div>
+<form [formGroup]="transferForm">
+    <div class="form-container">
+        <div class="row address">
+            <mat-form-field appearance="fill">
+                <mat-label>Enter Recipient Address</mat-label>
+                <input matInput formControlName="address" required>
+            </mat-form-field>
         </div>
-    </form>
-    <div class="row submitbuttom">
-        <button [disabled]="(!transferForm.valid)" (click)="transferToken()" mat-raised-button color="primary">
-            <span>Send</span>
-            <mat-icon class="send-icon">send</mat-icon>
-        </button>
+
+        <div class="row amount">
+            <mat-form-field appearance="fill">
+                <mat-label>Amount</mat-label>
+                <input type="number" matInput formControlName="amount" required>
+            </mat-form-field>
+        </div>
     </div>
-<!-- </mat-card> -->
+</form>
+<div class="row submitbuttom">
+    <button [disabled]="(!transferForm.valid)" (click)="transferToken()" mat-raised-button color="primary">
+        <span>Send</span>
+        <mat-icon class="send-icon">send</mat-icon>
+    </button>
+</div>

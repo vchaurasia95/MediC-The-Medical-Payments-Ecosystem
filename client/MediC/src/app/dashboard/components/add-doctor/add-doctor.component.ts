@@ -26,31 +26,34 @@ export class AddDoctorComponent implements OnInit {
     this.getAllProcedures();
   }
 
-  async addParticipant() {
+  async addDoctor() {
     const form = this.transferForm.value;
     const isValidCost = await this.validateCosts();
     console.log(`Valid:--: ${isValidCost}`);
     if (isValidCost) {
-      console.log('here-->')
+      console.log('here-->', form)
       const agreement: any = {};
       for (let prc of this.rawProcedures) {
-        agreement.prc["_id"] = form.prc_id;
+        agreement[prc["_id"]] = form[prc["_id"]];
       }
       console.log(agreement);
-      // if (await this.web3Service.getUserType(form.address) == 0) {
-      //   this.web3Service.addDoctor(form.address).then(async (reciept: any) => {
-      //     console.log(`Transcation Reciept-->`, reciept);
-      //     this.snackBarService.openSuccessSnackBar("Participent Successfully Added\nTx #: " + reciept.transactionHash);
-      //     this.offChainService.addAgreement({})
-      //   })
-      //     .catch((error: any) => {
-      //       console.log(`Transcation Error-->`, error);
-      //       this.snackBarService.openErrorSnackBar("Error Encountered, Check Console!");
-      //     });
-      // } else {
-      //   this.snackBarService.openWarnSnackBar("Invalid Address Provided/ Address already in Network");
-      //   this.transferForm.reset();
-      // }
+      agreement.timestamp = Date.now();
+      if (await this.web3Service.getUserType(form.address) == 0) {
+        this.offChainService.addAgreement(agreement).subscribe((agreementObject: any) => {
+          this.web3Service.addDoctor(form.address, agreementObject.result._id).then(async (reciept: any) => {
+            console.log(`Transcation Reciept-->`, reciept);
+            this.snackBarService.openSuccessSnackBar("Doctor Successfully Added\nTx #: " + reciept.transactionHash);
+          })
+            .catch((error: any) => {
+              console.log(`Transcation Error-->`, error);
+              this.snackBarService.openErrorSnackBar("Error Encountered, Check Console!");
+            });
+        });
+
+      } else {
+        this.snackBarService.openWarnSnackBar("Invalid Address Provided/ Address already in Network");
+        this.transferForm.reset();
+      }
     }
   }
 

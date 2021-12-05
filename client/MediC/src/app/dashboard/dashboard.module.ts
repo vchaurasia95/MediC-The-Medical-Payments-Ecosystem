@@ -13,6 +13,8 @@ import { EnrollPolicyComponent } from './components/enroll-policy/enroll-policy.
 import { ViewPoliciesComponent } from './components/view-policies/view-policies.component';
 import { AddDoctorComponent } from './components/add-doctor/add-doctor.component';
 import { AddProcedureCostComponent } from './components/add-procedure-cost/add-procedure-cost.component';
+import { HospatlizePatientComponent } from './components/hospatlize-patient/hospatlize-patient.component';
+import { PatientProcedureComponent } from './components/patient-procedure/patient-procedure.component';
 
 
 
@@ -27,7 +29,9 @@ import { AddProcedureCostComponent } from './components/add-procedure-cost/add-p
     EnrollPolicyComponent,
     ViewPoliciesComponent,
     AddDoctorComponent,
-    AddProcedureCostComponent
+    AddProcedureCostComponent,
+    HospatlizePatientComponent,
+    PatientProcedureComponent
   ],
   imports: [
     CommonModule,
