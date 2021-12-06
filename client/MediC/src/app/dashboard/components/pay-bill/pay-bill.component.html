@@ -10,11 +10,16 @@
                         <b>Patient Payable:</b> {{bill.details.payables.patientPayable}}
                         <br>
                         <b>Insurance Payable:</b> {{bill.details.payables.insurancePayable}}
+                        <div *ngIf="bill.details.paidTime">
+                            <br>
+                            <b>Payed On: </b> {{bill.details.paidTime | date:'medium'}}
+                        </div>
                     </mat-card-subtitle>
                 </mat-card-title-group>
                 <!-- <mat-card-content><b>Critical Coverage :</b> {{policy.pol.coverage[0]}} %</mat-card-content> -->
                 <mat-card-actions>
-                    <button (click)="payBill(bill)" mat-raised-button>Pay Bill</button>
+                    <button [disabled]="bill.details.paidTime" (click)="payBill(bill)" mat-raised-button>Pay
+                        Bill</button>
                 </mat-card-actions>
             </mat-card>
         </div>

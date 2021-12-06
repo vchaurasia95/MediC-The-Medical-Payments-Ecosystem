@@ -22,7 +22,7 @@ export class PayBillComponent implements OnInit {
       const address = await this.web3Service.getAddress();
       console.log(data.result[0]);
       console.log(address[0]);
-      const filteredData = data.result.filter((obj: any) => ((obj.details.patient.address == address[0]) && !obj.details.paidTime));
+      const filteredData = data.result.filter((obj: any) => ((obj.details.patient.address == address[0])));
       this.bills = await this.divideIntoChunks(filteredData, 3);
     })
   }

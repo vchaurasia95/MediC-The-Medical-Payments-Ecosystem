@@ -28,14 +28,13 @@ export class ViewBillComponent implements OnInit {
 
   async settleOutstandings(bill: any) {
     bill = bill.details;
-    await this.settleDoctor(bill);
     this.web3Service.getInsuranceClaim(bill.payables.insurancePayable, bill.insuranceDetails.address, bill.hospital.address,
       bill.policyId, bill.patient.address)
       .then(async (reciept: any) => {
         console.log(`Transcation Reciept-->`, reciept);
         await this.web3Service.setTokenBalance();
         this.snackbarService.openSuccessSnackBar("Got Insurance Claim Successfully Transferred\nTx #: " + reciept.transactionHash);
-
+        await this.settleDoctor(bill);
       })
       .catch((error: any) => {
         console.log(`Transcation Error-->`, error);

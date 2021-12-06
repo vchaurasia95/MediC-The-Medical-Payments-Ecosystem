@@ -472,7 +472,7 @@ export class Web3Service {
   public getInsuranceClaim(amount: string, insurer: string, hospital: String, policy: string, patient: string) {
     var a = new this.BigNumber(amount);
     const amt = a.mul(this.decimals).toString();
-    return this.contract.methods.getInsuranceClaim(amount, hospital, insurer, policy, patient)
+    return this.contract.methods.getInsuranceClaim(amt, hospital, insurer, policy, patient)
       .send({ from: this.account_addresses[0] })
       .on('transactionHash', (hash: any) => {
         console.log(`Transcation #--> ${hash}`);
@@ -487,7 +487,7 @@ export class Web3Service {
   public settleDoctorPayments(doctor: string, amount: string) {
     var a = new this.BigNumber(amount);
     const amt = a.mul(this.decimals).toString();
-    return this.contract.methods.settleDoctorPayment(doctor, amount)
+    return this.contract.methods.settleDoctorPayment(doctor, amt)
       .send({ from: this.account_addresses[0] })
       .on('transactionHash', (hash: any) => {
         console.log(`Transcation #--> ${hash}`);
