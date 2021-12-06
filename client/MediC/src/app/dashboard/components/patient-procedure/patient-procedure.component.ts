@@ -38,7 +38,19 @@ export class PatientProcedureComponent implements OnInit {
   async addPatientProcedure() {
     const value = this.transferForm.value;
     console.log(value);
-    // this.offchainService
+    this.offchainService.addProcedureDetails({ description: value.description })
+      .subscribe((data: any) => {
+        this.web3Service.addPatientProcedure(value.patient._id, value.procedure, data.result._id)
+          .then(async (reciept: any) => {
+            console.log(`Transcation Reciept-->`, reciept);
+            this.snackbarService.openSuccessSnackBar("Procedure Successfully Added\nTx #: " + reciept.transactionHash);
+          })
+          .catch((error: any) => {
+            console.log(`Transcation Error-->`, error);
+            this.snackbarService.openErrorSnackBar("Error Encountered, Check Console!");
+          });
+      });
+    this.transferForm.reset();
   }
 
   async getAdmittedPatients() {

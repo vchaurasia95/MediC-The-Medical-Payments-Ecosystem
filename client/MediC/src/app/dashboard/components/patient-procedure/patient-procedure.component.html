@@ -5,7 +5,7 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Choose Admitted Patient</mat-label>
                     <mat-select formControlName="patient">
-                        <mat-option *ngFor="let patient of admittedPatients" value="patient.details.patient">
+                        <mat-option *ngFor="let patient of admittedPatients" [value]="patient">
                             {{patient.details.name}}
                         </mat-option>
                     </mat-select>
@@ -17,7 +17,7 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Choose Procedure Performed</mat-label>
                     <mat-select formControlName="procedure">
-                        <mat-option *ngFor="let procedure of procedures" value="procedure._id">
+                        <mat-option *ngFor="let procedure of procedures" [value]="procedure._id">
                             {{procedure.details.name}}
                         </mat-option>
                     </mat-select>
@@ -38,7 +38,7 @@
 </form>
 <div class="row submitbuttom">
     <div class="col-md-12 col-12">
-        <button (click)="addPatientProcedure()" mat-raised-button color="primary">
+        <button [disabled]="!transferForm.valid" (click)="addPatientProcedure()" mat-raised-button color="primary">
             <span>Send</span>
             <mat-icon class="send-icon">send</mat-icon>
         </button>

@@ -35,19 +35,31 @@ export class OffChainService {
     return this.httpClient.post(`${BASE_URL_BACKEND}policy`, {
         details:details,
     },
-    {responseType: "json"})
+    {responseType: "json"});
   }
 
   public addHospitalizationRecord(details:Object){
     return this.httpClient.post(`${BASE_URL_BACKEND}hospitalization-record`, {
         details:details
-    })
+    });
   }
 
   public addProcedure(details: Object){
     return this.httpClient.post(`${BASE_URL_BACKEND}procedure`, {
       details:details
-    })
+    });
+  }
+
+  public addProcedureDetails(details: Object){
+    return this.httpClient.post(`${BASE_URL_BACKEND}procedureDetails`, {
+      details:details
+    });
+  }
+
+  public addBill(details: Object){
+    return this.httpClient.post(`${BASE_URL_BACKEND}bill`, {
+      details:details
+    });
   }
   // ! GET METHODS 
 
@@ -91,8 +103,24 @@ export class OffChainService {
     return this.httpClient.get(`${BASE_URL_BACKEND}procedure`);
   }
 
+  public getProcedureDetail(id:number){
+    return this.httpClient.get(`${BASE_URL_BACKEND}procedureDetails`);
+  }
+
   public getAllProcedures(){
     return this.httpClient.get(`${BASE_URL_BACKEND}procedure/all`);
+  }
+
+  public getAllProcedureDetails(){
+    return this.httpClient.get(`${BASE_URL_BACKEND}procedureDetails/all`);
+  }
+
+  public getAllBills(){
+    return this.httpClient.get(`${BASE_URL_BACKEND}bill/all`);
+  }
+
+  public getBill(id:number){
+    return this.httpClient.get(`${BASE_URL_BACKEND}bill`);
   }
   
 }
