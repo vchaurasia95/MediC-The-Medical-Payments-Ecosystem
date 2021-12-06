@@ -1,5 +1,5 @@
 .init-page{
-    background-color: rgb(183, 220, 235);
+    background-color: #fff4dd;
     height: 100%;
     display: flex; justify-content:center; align-items:center;
 }
@@ -20,6 +20,7 @@ h1{
     font-weight: bolder;
     font-size: xxx-large;
     font-family: cursive;
+    color: #4c4c4c;
 }
 
 button{
@@ -27,4 +28,5 @@ button{
     width: 300px;
     margin: 0%;
     background-color: rgba(240, 248, 255, 0.623);
+    color: #4c4c4c;
 }

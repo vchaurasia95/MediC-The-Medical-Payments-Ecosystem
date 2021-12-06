@@ -20,6 +20,8 @@ import { GenerateBillComponent } from './components/generate-bill/generate-bill.
 import { PolicyDialogComponent } from './components/policy-dialog/policy-dialog.component';
 import { ViewBillComponent } from './components/view-bill/view-bill.component';
 import { PayBillComponent } from './components/pay-bill/pay-bill.component';
+import { ViewHospitalsComponent } from './components/view-hospitals/view-hospitals.component';
+import { ViewEnrolledPolicyDialogComponent } from './components/view-enrolled-policy-dialog/view-enrolled-policy-dialog.component';
 
 
 
@@ -41,7 +43,9 @@ import { PayBillComponent } from './components/pay-bill/pay-bill.component';
     GenerateBillComponent,
     PolicyDialogComponent,
     ViewBillComponent,
-    PayBillComponent
+    PayBillComponent,
+    ViewHospitalsComponent,
+    ViewEnrolledPolicyDialogComponent
   ],
   imports: [
     CommonModule,

@@ -1,15 +1,16 @@
-<h1 mat-dialog-title>Favorite Animal</h1>
-<div mat-dialog-content>
-    My favorite animal is:
-    <ul>
-        <li>
-            <span *ngIf="data.animal === 'panda'">&#10003;</span> Panda
-        </li>
-        <li>
-            <span *ngIf="data.animal === 'unicorn'">&#10003;</span> Unicorn
-        </li>
-        <li>
-            <span *ngIf="data.animal === 'lion'">&#10003;</span> Lion
-        </li>
-    </ul>
+
+<div *ngIf="data.policyFlag == 1">
+    <h1 mat-dialog-title>Policy Name : {{data.name}}</h1>
+    <div mat-dialog-content>
+        <ul type="none">
+            <li><b>Cost : </b> {{data.cost}}</li>
+            <li><b>Total Coverage : </b> {{data.total_coverage}}</li>
+            <li><b>Critical Coverage :</b> {{data.coverage[0]}} %</li>
+            <li><b>Moderate Coverage :</b> {{data.coverage[1]}} %</li>
+            <li><b>Medical Mgmt. Coverage :</b> {{data.coverage[2]}} %</li>
+        </ul>
+    </div>
+</div>
+<div *ngIf="data.policyFlag != 1">
+    <h1 mat-dialog-title>Patient policy doesn't exist</h1>
 </div>

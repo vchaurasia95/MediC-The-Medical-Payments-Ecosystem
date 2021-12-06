@@ -17,6 +17,7 @@ import { CheckInsuranceComponent } from './components/check-insurance/check-insu
 import { GenerateBillComponent } from './components/generate-bill/generate-bill.component';
 import { ViewBillComponent } from './components/view-bill/view-bill.component';
 import { PayBillComponent } from './components/pay-bill/pay-bill.component';
+import { ViewHospitalsComponent } from './components/view-hospitals/view-hospitals.component';
 
 const routes: Routes = [
   {
@@ -35,8 +36,12 @@ const routes: Routes = [
       { path: 'check-insurance', component: CheckInsuranceComponent },
       { path: 'generate-bill', component: GenerateBillComponent },
       { path: 'view-bills', component: ViewBillComponent },
-      { path: 'pay-bill', component: PayBillComponent }
-    ]
+      { path: 'pay-bill', component: PayBillComponent },
+      {path: 'add-patient-procedure', component: PatientProcedureComponent},
+      {path: 'check-insurance', component: CheckInsuranceComponent},
+      {path: 'generate-bill', component: GenerateBillComponent},
+      {path: 'view-hospitals', component: ViewHospitalsComponent}
+    ] 
   },
 ]
 

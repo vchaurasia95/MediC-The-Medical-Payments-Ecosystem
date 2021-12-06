@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 const BASE_URL_BACKEND = `http://localhost:4041/api/`
+// const BASE_URL_BACKEND = `http://3.145.3.165:4041/api/`
 var options = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
