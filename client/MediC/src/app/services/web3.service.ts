@@ -232,9 +232,9 @@ export class Web3Service {
   
   public async getPatientPolicy(patient_address: string) {
     // TODO: Check output with valid patient id.
-    if (Web3.utils.isAddress(patient_address) == false) {
-      throw Error("Account address is invalid.")
-    }
+    // if (Web3.utils.isAddress(patient_address) == false) {
+    //   throw Error("Account address is invalid.")
+    // }
     
     return this.contract.methods.getPatientPolicy(patient_address).call((_error: any, _result: any) => {
       if (_error) {

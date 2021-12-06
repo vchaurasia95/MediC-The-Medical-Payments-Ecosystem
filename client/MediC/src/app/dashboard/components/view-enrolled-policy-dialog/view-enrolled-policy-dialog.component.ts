@@ -2,27 +2,25 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Web3Service } from 'src/app/services/web3.service';
 
+
 @Component({
-  selector: 'app-policy-dialog',
-  templateUrl: './policy-dialog.component.html',
-  styleUrls: ['./policy-dialog.component.scss']
+  selector: 'app-view-enrolled-policy-dialog',
+  templateUrl: './view-enrolled-policy-dialog.component.html',
+  styleUrls: ['./view-enrolled-policy-dialog.component.scss']
 })
-export class PolicyDialogComponent implements OnInit {
+export class ViewEnrolledPolicyDialogComponent implements OnInit {
   policy_details:any;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private web3Service: Web3Service) { }
 
   async ngOnInit() {
-
-
+    this.data = this.data.result;
     this.policy_details = {
       policy_id: await this.data._id,
       policy_Name: await this.data.details.policyName
     }
 
     this.policy_details = await this.getPolicyDetails(this.data._id, this.policy_details.policy_Name)
-
     this.data = this.policy_details;
-    this.data.policyFlag = 1;
   }
 
   private async getPolicyDetails(policyId: string, policyName: string) {
@@ -42,4 +40,5 @@ export class PolicyDialogComponent implements OnInit {
       coverage: data ? data["4"] : 0
     });
   }
+
 }

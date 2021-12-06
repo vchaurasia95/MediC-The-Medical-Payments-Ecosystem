@@ -36,7 +36,7 @@ export class ViewPoliciesComponent implements OnInit {
   private async getPolicyDetails(policyId: string, policyName: string) {
     let data: any;
     try {
-      data = await this.web3Service.viewPolicy(policyId)
+      data = await this.web3Service.viewPolicy(policyId);
     } catch (err) {
       console.log("error occured -- fetching policies");
     }

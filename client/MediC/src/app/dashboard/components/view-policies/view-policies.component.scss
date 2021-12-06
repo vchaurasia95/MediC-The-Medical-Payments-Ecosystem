@@ -5,20 +5,19 @@
 .container{
     overflow: hidden;
 }
-mat-card{
-    // width: 200px;
-    width: 300px;
+.row{
+    padding: 3%;
+    padding-top: 0%;
+}
+.container{
+    overflow: hidden;
 }
 
-mat-card-title{
-    color: sandybrown;
+h1{
+    color: sandybrown!important;
 }
 
-mat-card-subtitle{
-    font-size: medium;
-}
-
-mat-card-content{
-    color: #4c4c4c;
-    font-size: medium;
+div{
+    color: #4c4c4c!important;
+    font-size: medium!important;
 }
