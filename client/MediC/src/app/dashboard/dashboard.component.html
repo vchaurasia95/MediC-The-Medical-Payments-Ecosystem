@@ -38,7 +38,7 @@
                 <div *ngIf="userType == 5">
                     <a mat-list-item [routerLink]="['enroll-policy']"> Enroll Insurance </a>
                     <!-- TODO: Duplicate above anchor and add ngif condition for if policy does exist then show enrolled policy else add policy -->
-                    <a mat-list-item href="..."> Pay Bill </a>
+                    <a mat-list-item [routerLink]="['pay-bill']"> Pay Bill </a>
                 </div>
 
 
@@ -53,6 +53,7 @@
                     <a mat-list-item [routerLink]="['hospatlize']"> Admit Patient </a>
                     <a mat-list-item [routerLink]="['check-insurance']"> Check Insurance </a>
                     <a mat-list-item [routerLink]="['generate-bill']"> Generate Patient Bill </a>
+                    <a mat-list-item [routerLink]="['view-bills']"> View Generated Bills </a>
                 </div>
 
                 <a mat-list-item *ngIf="userType==2 || userType==3" [routerLink]="['add-escrow-bal']"> Add Escrow

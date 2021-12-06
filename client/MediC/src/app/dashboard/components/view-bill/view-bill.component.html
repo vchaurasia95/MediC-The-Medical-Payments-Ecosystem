@@ -1,0 +1,27 @@
+<div class="container">
+    <div *ngFor="let chunk of bills" class="row">
+        <div *ngFor="let bill of chunk" class="col-md-4">
+            <mat-card class="example-card">
+                <mat-card-title-group>
+                    <mat-card-title>#{{bill._id}}</mat-card-title>
+                    <mat-card-subtitle>
+                        <br>
+                        <b>Total Bill:</b> {{bill.details.payables.total}} <br>
+                        <b>Patient Payable:</b> {{bill.details.payables.patientPayable}}
+                        <br>
+                        <b>Insurance Payable:</b> {{bill.details.payables.insurancePayable}}
+                        <div *ngIf="bill.details.paidTime">
+                            <br>
+                            <b>Patient Payed On: </b> {{bill.details.paidTime | date:'medium'}}
+                        </div>
+                    </mat-card-subtitle>
+                </mat-card-title-group>
+                <!-- <mat-card-content><b>Critical Coverage :</b> {{policy.pol.coverage[0]}} %</mat-card-content> -->
+                <mat-card-actions>
+                    <button [disabled]="!bill.details.paidTime" (click)="settleOutstandings(bill)" mat-raised-button>Settle
+                        Outstandings</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>

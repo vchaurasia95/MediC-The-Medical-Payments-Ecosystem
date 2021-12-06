@@ -258,7 +258,7 @@ export class Web3Service {
     });
   }
 
-  public getProcedureCost(procedure_id: Number) {
+  public getProcedureCost(procedure_id: string) {
     // TODO: Check output with valid procedure id and output format.
 
     return this.contract.methods.getProcedureCost(procedure_id).call((_error: any, _result: any) => {
@@ -453,6 +453,45 @@ export class Web3Service {
 
   public addPatientProcedure(hospitalizationId: string, procedureId: string, procedureDetailsId: string) {
     return this.contract.methods.addPatientProcedure(hospitalizationId, this.account_addresses[0], Date.now(), procedureDetailsId, procedureId)
+      .send({ from: this.account_addresses[0] })
+      .on('transactionHash', (hash: any) => {
+        console.log(`Transcation #--> ${hash}`);
+        this.snackBarService.openWarnSnackBar('Transaction Sent Successfully!\nTx #: ' + hash);
+      })
+      .on('error', (error: any, receipt: any) => {
+        console.log(`Transcation Error-->`, error);
+        this.snackBarService.openErrorSnackBar('Transaction error,Check Console!!');
+      });
+  }
+  public getHospitalAgreement(address: string) {
+    return this.contract.methods.getHospitalAgreement(address)
+      .call((_error: any, _result: any) => {
+        if (_error) {
+          throw Error(_error.message)
+        }
+        console.log(`Associated Hospital: ${_result}`)
+        return _result;
+      });
+  }
+  public getInsuranceClaim(amount: string, insurer: string, hospital: String, policy: string, patient: string) {
+    var a = new this.BigNumber(amount);
+    const amt = a.mul(this.decimals).toString();
+    return this.contract.methods.getInsuranceClaim(amount, hospital, insurer, policy, patient)
+      .send({ from: this.account_addresses[0] })
+      .on('transactionHash', (hash: any) => {
+        console.log(`Transcation #--> ${hash}`);
+        this.snackBarService.openWarnSnackBar('Transaction Sent Successfully!\nTx #: ' + hash);
+      })
+      .on('error', (error: any, receipt: any) => {
+        console.log(`Transcation Error-->`, error);
+        this.snackBarService.openErrorSnackBar('Transaction error,Check Console!!');
+      });
+  }
+
+  public settleDoctorPayments(doctor: string, amount: string) {
+    var a = new this.BigNumber(amount);
+    const amt = a.mul(this.decimals).toString();
+    return this.contract.methods.settleDoctorPayment(doctor, amount)
       .send({ from: this.account_addresses[0] })
       .on('transactionHash', (hash: any) => {
         console.log(`Transcation #--> ${hash}`);

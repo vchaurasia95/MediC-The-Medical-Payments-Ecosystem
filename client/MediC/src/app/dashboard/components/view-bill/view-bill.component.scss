@@ -1,0 +1,24 @@
+.row{
+    padding: 3%;
+    padding-top: 0%;
+}
+.container{
+    overflow: hidden;
+}
+mat-card{
+    // width: 200px;
+    width: 300px;
+}
+
+mat-card-title{
+    color: sandybrown;
+}
+
+mat-card-subtitle{
+    font-size: medium;
+}
+
+mat-card-content{
+    color: #4c4c4c;
+    font-size: medium;
+}

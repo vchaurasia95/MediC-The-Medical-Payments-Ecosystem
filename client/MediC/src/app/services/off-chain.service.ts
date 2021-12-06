@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 const BASE_URL_BACKEND = `http://localhost:4041/api/`
 var options = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json'
+    'Content-Type': 'application/json'
   }),
   observe: 'response'
 };
@@ -18,108 +18,117 @@ export class OffChainService {
 
   // ! POST METHODS
 
-  public createUser(details:Object){
+  public createUser(details: Object) {
     return this.httpClient.post<any>(`${BASE_URL_BACKEND}user/register`, {
-      details:details
+      details: details
     })
   }
 
-  public addAgreement(details:Object){
+  public addAgreement(details: Object) {
     return this.httpClient.post(`${BASE_URL_BACKEND}agreement`, {
-        details:details
+      details: details
     })
   }
 
-  public addPolicy(details:Object){
+  public addPolicy(details: Object) {
     return this.httpClient.post(`${BASE_URL_BACKEND}policy`, {
-        details:details,
+      details: details,
     },
-    {responseType: "json"});
+      { responseType: "json" });
   }
 
-  public addHospitalizationRecord(details:Object){
+  public addHospitalizationRecord(details: Object) {
     return this.httpClient.post(`${BASE_URL_BACKEND}hospitalization-record`, {
-        details:details
+      details: details
     });
   }
 
-  public addProcedure(details: Object){
+  public addProcedure(details: Object) {
     return this.httpClient.post(`${BASE_URL_BACKEND}procedure`, {
-      details:details
+      details: details
     });
   }
 
-  public addProcedureDetails(details: Object){
+  public addProcedureDetails(details: Object) {
     return this.httpClient.post(`${BASE_URL_BACKEND}procedureDetails`, {
-      details:details
+      details: details
     });
   }
 
-  public addBill(details: Object){
+  public addBill(details: Object) {
     return this.httpClient.post(`${BASE_URL_BACKEND}bill`, {
-      details:details
+      details: details
     });
   }
   // ! GET METHODS 
 
   // USER
-  public getUserDetails(id:Number){
+  public getUserDetails(id: Number) {
     return this.httpClient.get(`${BASE_URL_BACKEND}user?_id=${id}`);
   }
 
-  public getAllUserDetails(){
+  public getAllUserDetails() {
     return this.httpClient.get(`${BASE_URL_BACKEND}user/all`);
   }
 
   // AGREEMENTS
-  public getAgreementDetails(id:Number){
+  public getAgreementDetails(id: Number) {
     return this.httpClient.get(`${BASE_URL_BACKEND}agreement?_id=${id}`);
   }
 
-  public getAllAgreementDetails(){
+  public getAllAgreementDetails() {
     return this.httpClient.get(`${BASE_URL_BACKEND}agreement/all`);
   }
 
   // POLICY
-  public getPolicyDetails(id:Number){
+  public getPolicyDetails(id: Number) {
     return this.httpClient.get(`${BASE_URL_BACKEND}policy?_id=${id}`);
   }
 
-  public getAllPolicyDetails(){
+  public getAllPolicyDetails() {
     return this.httpClient.get(`${BASE_URL_BACKEND}policy/all`);
   }
 
   // HOSPITALIZATION RECORDS
-  public getHospitalizationRecords(id:Number){
+  public getHospitalizationRecords(id: Number) {
     return this.httpClient.get(`${BASE_URL_BACKEND}hospitalization-record?_id=${id}`);
   }
 
-  public getAllHospitalizationRecords(){
+  public getAllHospitalizationRecords() {
     return this.httpClient.get(`${BASE_URL_BACKEND}hospitalization-record/all`);
   }
 
-  public getProcedures(id:number){
-    return this.httpClient.get(`${BASE_URL_BACKEND}procedure`);
+  public getProcedures(id: number) {
+    return this.httpClient.get(`${BASE_URL_BACKEND}procedure?_id=${id}`);
   }
 
-  public getProcedureDetail(id:number){
-    return this.httpClient.get(`${BASE_URL_BACKEND}procedureDetails`);
+  public getProcedureDetail(id: number) {
+    return this.httpClient.get(`${BASE_URL_BACKEND}procedureDetails?_id=${id}`);
   }
 
-  public getAllProcedures(){
+  public getAllProcedures() {
     return this.httpClient.get(`${BASE_URL_BACKEND}procedure/all`);
   }
 
-  public getAllProcedureDetails(){
+  public getAllProcedureDetails() {
     return this.httpClient.get(`${BASE_URL_BACKEND}procedureDetails/all`);
   }
 
-  public getAllBills(){
+  public getAllBills() {
     return this.httpClient.get(`${BASE_URL_BACKEND}bill/all`);
   }
 
-  public getBill(id:number){
+  public getBill(id: number) {
     return this.httpClient.get(`${BASE_URL_BACKEND}bill`);
   }
-  
+
+  public updateHospitalizationRecord(body: any) {
+    return this.httpClient.patch(`${BASE_URL_BACKEND}hospitalization-record`, body);
+  }
+
+  public updateBill(body: any) {
+    return this.httpClient.patch(`${BASE_URL_BACKEND}bill`, body);
+  }
+
+
 }

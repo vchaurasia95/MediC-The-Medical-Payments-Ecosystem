@@ -43,6 +43,7 @@ export class AddDoctorComponent implements OnInit {
           this.web3Service.addDoctor(form.address, agreementObject.result._id).then(async (reciept: any) => {
             console.log(`Transcation Reciept-->`, reciept);
             this.snackBarService.openSuccessSnackBar("Doctor Successfully Added\nTx #: " + reciept.transactionHash);
+            await this.offChainService.createUser({address:form.address,name:form.name,email:form.email}).toPromise();
           })
             .catch((error: any) => {
               console.log(`Transcation Error-->`, error);

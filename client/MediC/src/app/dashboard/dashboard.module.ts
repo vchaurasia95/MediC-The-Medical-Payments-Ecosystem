@@ -18,6 +18,8 @@ import { PatientProcedureComponent } from './components/patient-procedure/patien
 import { CheckInsuranceComponent } from './components/check-insurance/check-insurance.component';
 import { GenerateBillComponent } from './components/generate-bill/generate-bill.component';
 import { PolicyDialogComponent } from './components/policy-dialog/policy-dialog.component';
+import { ViewBillComponent } from './components/view-bill/view-bill.component';
+import { PayBillComponent } from './components/pay-bill/pay-bill.component';
 
 
 
@@ -37,7 +39,9 @@ import { PolicyDialogComponent } from './components/policy-dialog/policy-dialog.
     PatientProcedureComponent,
     CheckInsuranceComponent,
     GenerateBillComponent,
-    PolicyDialogComponent
+    PolicyDialogComponent,
+    ViewBillComponent,
+    PayBillComponent
   ],
   imports: [
     CommonModule,
