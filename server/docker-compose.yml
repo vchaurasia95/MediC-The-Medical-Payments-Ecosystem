@@ -1,0 +1,15 @@
+version: "3.9"  
+services:
+  mongo:
+    container_name: MongoDb
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+
+  backend:
+    container_name: Backend
+    build: .
+    restart: always
+    ports:
+      - "4041:4041" 

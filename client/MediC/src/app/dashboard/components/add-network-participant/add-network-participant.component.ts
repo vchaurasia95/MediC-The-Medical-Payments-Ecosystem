@@ -45,7 +45,7 @@ export class AddNetworkParticipantComponent implements OnInit {
         });
       this.transferForm.reset();
     } else {
-      this.snackBarService.openWarnSnackBar("Invalid Address Provided/ Address already in Network");
+      this.snackBarService.openErrorSnackBar("Invalid Address Provided/ Address already in Network");
       this.transferForm.reset();
     }
   }

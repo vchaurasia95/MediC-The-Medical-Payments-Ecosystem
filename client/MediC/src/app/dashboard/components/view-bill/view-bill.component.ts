@@ -27,14 +27,18 @@ export class ViewBillComponent implements OnInit {
   }
 
   async settleOutstandings(bill: any) {
-    bill = bill.details;
-    this.web3Service.getInsuranceClaim(bill.payables.insurancePayable, bill.insuranceDetails.address, bill.hospital.address,
-      bill.policyId, bill.patient.address)
+    // bill = bill.details;
+    this.web3Service.getInsuranceClaim(bill.details.payables.insurancePayable,
+       bill.details.insuranceDetails.address, bill.details.hospital.address,
+       bill.details.policyId, bill.details.patient.address)
       .then(async (reciept: any) => {
         console.log(`Transcation Reciept-->`, reciept);
         await this.web3Service.setTokenBalance();
         this.snackbarService.openSuccessSnackBar("Got Insurance Claim Successfully Transferred\nTx #: " + reciept.transactionHash);
-        await this.settleDoctor(bill);
+        await this.settleDoctor(bill.details);
+        bill.details.settled = true;
+        await this.offChainService.updateBill(bill).toPromise();
+        await this.web3Service.getEscrowBalance();
       })
       .catch((error: any) => {
         console.log(`Transcation Error-->`, error);
@@ -42,12 +46,12 @@ export class ViewBillComponent implements OnInit {
       });
   }
 
-  private async settleDoctor(bill:any) {
+  private async settleDoctor(bill: any) {
     for (let doctor in bill.payables.doctorPayable) {
       // console.log(doctor);
       // console.log(bill.payables.doctorPayable[doctor]);
-      await this.web3Service.settleDoctorPayments(doctor,bill.payables.doctorPayable[doctor])
-      this.snackbarService.openSuccessSnackBar("Settled Doctor:"+doctor);
+      await this.web3Service.settleDoctorPayments(doctor, bill.payables.doctorPayable[doctor])
+      this.snackbarService.openSuccessSnackBar("Settled Doctor:" + doctor);
     }
   }
 

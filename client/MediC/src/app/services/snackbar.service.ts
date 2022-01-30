@@ -5,19 +5,19 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 export class SnackbarService {
   private duration=3000;
   private successConfig: MatSnackBarConfig = {
-    horizontalPosition: "right",
+    horizontalPosition: "center",
     verticalPosition: "bottom",
     duration: this.duration,
     panelClass: 'success-dialog'
   }
   private warnConfig: MatSnackBarConfig = {
-    horizontalPosition: "right",
+    horizontalPosition: "center",
     verticalPosition: "bottom",
     duration: this.duration,
     panelClass: 'warning-dialog'
   }
   private errorConfig: MatSnackBarConfig = {
-    horizontalPosition: "right",
+    horizontalPosition: "center",
     verticalPosition: "bottom",
     duration: this.duration,
     panelClass: 'error-dialog'
